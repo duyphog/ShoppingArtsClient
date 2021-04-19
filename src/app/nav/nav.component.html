@@ -1,7 +1,64 @@
 <mat-toolbar color="primary" class="app-header">
-    <div><a routerLink="home" routerLinkActive="active" class="positronx">Demo</a></div>
-    <span class="nav-tool-items">
-        <a mat-button routerLink="signin">Signin</a>
-        <a mat-button mat-raised-button routerLink="register" >Signup</a>
-    </span>
+
+    <mat-toolbar-row>
+
+        <div><a routerLink="home" routerLinkActive="active" class="positronx">Demo</a></div>
+
+        <span class="nav-tool-items">
+            <a mat-button routerLink="/home">Category</a>
+            <a mat-button routerLink="/home">Product</a>
+        </span>
+
+        <div *ngIf="!(currentUser$ | async) as user">
+            <button mat-button routerLink="/register">
+                <mat-icon>person_add</mat-icon>
+                Signup
+            </button>
+
+            <button mat-button routerLink="/signin" >
+                <mat-icon>power_settings_new</mat-icon>
+                Login
+            </button>
+        </div>
+        
+        <div>
+            <button mat-icon-button [matMenuTriggerFor]="cart">
+                <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+            </button>
+
+            <mat-menu #cart="matMenu">
+
+                <button mat-menu-item routerLink="/local-mall">
+                    <mat-icon>local_mall</mat-icon>
+                    <span>Shop cart</span>
+                </button>
+
+                <button mat-menu-item routerLink="/check-out">
+                    <mat-icon>redeem</mat-icon>
+                    <span>Checkout</span>
+                </button>
+
+            </mat-menu>
+        </div>
+        <div *ngIf="(currentUser$ | async) as user">
+            <button mat-icon-button [matMenuTriggerFor]="auth">
+                <mat-icon>person_outline</mat-icon>
+            </button>
+
+            <mat-menu #auth="matMenu">
+
+                <button mat-menu-item routerLink="/profile">
+                    <mat-icon>manage_accounts</mat-icon>
+                    <span>Account</span>
+                </button>
+
+                <button mat-menu-item (click)="logout()">
+                    <mat-icon>exit_to_app</mat-icon>
+                    <span>Sign out</span>
+                </button>
+
+            </mat-menu>
+        </div>
+    </mat-toolbar-row>
+
 </mat-toolbar>

@@ -30,9 +30,10 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDatepickerModule,  } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
+import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 const materialModules = [
   CdkTreeModule,
@@ -66,8 +67,22 @@ const materialModules = [
   MatGridListModule,
   MatRadioModule,
   MatDatepickerModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatNativeDateModule,
+  MatMomentDateModule
 ];
+
+export const MY_NATIVE_DATE_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'DD-MM-YYYY',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
 
 @NgModule({
   imports: [
@@ -77,6 +92,9 @@ const materialModules = [
   exports: [
     ...materialModules
   ],
+  providers: [
+    {provide: MAT_DATE_FORMATS, useValue: MY_NATIVE_DATE_FORMATS},
+  ]
 })
 
 export class AngularMaterialModule { }

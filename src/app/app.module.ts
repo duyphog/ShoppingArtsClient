@@ -14,6 +14,7 @@ import { HomeComponent } from './home//home.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './nav/nav.component';
 import { AccountService } from './_services/account.service';
+import { GenderService } from './_services/gender.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
@@ -44,6 +45,7 @@ import { SigninComponent } from './account/signin/signin.component';
   ],
   providers: [
     AccountService,
+    GenderService,
     {
       provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
     },

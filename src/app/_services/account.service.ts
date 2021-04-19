@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { User } from '../_models/user';
-import { ResponseData } from '../_models/response-data';
 import { ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
+import { Register } from '../_models/register';
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +30,8 @@ export class AccountService {
     )
   }
 
-  register(model: any) {
-    return this.http.post<User>(this.urlRegister, model).pipe(
+  register(model: Register) {
+    return this.http.post<User>(this.urlRegister, JSON.stringify(model)).pipe(
       map((user: User) => {
         if (user) {
          this.setCurrentUser(user);

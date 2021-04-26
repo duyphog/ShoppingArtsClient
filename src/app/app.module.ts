@@ -19,6 +19,8 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
+import { ProductComponent } from './product/product.component';
+import { ProductService } from './_services/product.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { SigninComponent } from './account/signin/signin.component';
     HomeComponent,
     NavComponent,
     RegisterComponent,
-    SigninComponent
+    SigninComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { SigninComponent } from './account/signin/signin.component';
   providers: [
     AccountService,
     GenderService,
+    ProductService,
     {
       provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
     },

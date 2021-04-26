@@ -22,7 +22,7 @@ export class SigninComponent implements OnInit {
 
   signIn() {
     this.accountService.signIn(this.model).subscribe(response => {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/product');
     })
   }
 

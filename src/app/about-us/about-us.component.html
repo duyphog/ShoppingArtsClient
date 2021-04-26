@@ -1,0 +1,27 @@
+<div class="container" style="margin-top: 50px;"> 
+<div class="zippy">
+    <div class="zippy-heading"
+    [class.expanded]="isExpanded"
+    (click)="toggle()">
+        About Us !
+        <span class="glyphicon"
+        [ngClass]="{
+          'glyphicon-chevron-up': isExpanded,
+           'glyphicon-chevron-down': !isExpanded
+        }"
+        ></span>
+    </div>
+    <div *ngIf="isExpanded" class="zippy-body">
+        
+     <p>
+         <span style="font-size: x-large;">
+             <strong>IT'S ALL ABOUT GOOD LIVING</strong>
+         </span>
+     </p>
+     <br>
+     <p>
+       <strong>The ShoppingArts</strong> is a collection of all things stationery and paper goods that we love, use, and care for. Deeply inspired by our trips to Japan and our affection for their craftsmanship and culture, we brought together designs for your desk and home from all over the globe that  we hope will bring you joy and comfort while sparking your curiosity and creativity.
+     </p>
+    </div>
+  </div>
+</div>

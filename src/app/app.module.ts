@@ -19,6 +19,8 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SigninComponent } from './account/signin/signin.component';
     HomeComponent,
     NavComponent,
     RegisterComponent,
-    SigninComponent
+    SigninComponent,
+    ContactUsComponent,
+    AboutUsComponent
   ],
   imports: [
     BrowserModule,

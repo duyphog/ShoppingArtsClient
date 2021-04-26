@@ -19,6 +19,16 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
+import { HeaderComponent } from './header/header.component';
+import { SlideComponent } from './slide/slide.component';
+import { Slider1Component } from './home/slider1/slider1.component';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { TabsComponent } from './home/tabs/tabs.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { Slider2Component } from './home/slider2/slider2.component';
+import { FooterComponent } from './footer/footer.component';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +36,13 @@ import { SigninComponent } from './account/signin/signin.component';
     HomeComponent,
     NavComponent,
     RegisterComponent,
-    SigninComponent
+    SigninComponent,
+    HeaderComponent,
+    SlideComponent,
+    Slider1Component,
+    TabsComponent,
+    Slider2Component,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +50,8 @@ import { SigninComponent } from './account/signin/signin.component';
     AngularMaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CarouselModule ,
+    MatTabsModule,
     [FormsModule, ReactiveFormsModule],
     FlexLayoutModule,
     BsDropdownModule.forRoot(),

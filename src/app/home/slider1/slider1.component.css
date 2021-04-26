@@ -1,0 +1,11 @@
+.owl-carousel-o {
+    align-content: center;
+    margin-left: 50px;
+  }
+  /* .slide_item{
+      width: 30%;
+  } */
+  .owl-item{
+    text-align: center;
+    width: 100%;
+  }

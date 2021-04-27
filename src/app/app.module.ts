@@ -3,7 +3,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TabsModule } from 'ngx-bootstrap/tabs'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from './angular-material.module';
@@ -19,10 +19,10 @@ import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
-import { ProductComponent } from './product/product.component';
 import { ProductService } from './_services/product.service';
 import { PaginationService } from './_services/pagination.service';
 import { HttpBaseService } from './_services/http-base.service';
+import { ProductModule } from './product/product.module';
 
 @NgModule({
   declarations: [
@@ -30,8 +30,7 @@ import { HttpBaseService } from './_services/http-base.service';
     HomeComponent,
     NavComponent,
     RegisterComponent,
-    SigninComponent,
-    ProductComponent
+    SigninComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +44,8 @@ import { HttpBaseService } from './_services/http-base.service';
     ToastrModule.forRoot({
       positionClass: 'toast-top-right'
     }),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    ProductModule
 
   ],
   providers: [

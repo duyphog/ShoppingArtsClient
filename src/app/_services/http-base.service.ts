@@ -18,10 +18,10 @@ export class HttpBaseService {
     this.headers = this.headers.set('Accept', 'application/json');
   }
 
-  getAll<T>() {
+  getAll<T>(patch: string) {
     const mergedUrl =
-      `${this.endpoint}` +
-      `?page=${this.paginationService.page}&pageSize=${this.paginationService.pageSize
+      `${this.endpoint}` + patch +
+      `?pageNumber=${this.paginationService.page}&pageSize=${this.paginationService.pageSize
       }`;
 
     return this.httpClient.get<T>(mergedUrl, { observe: 'response' });

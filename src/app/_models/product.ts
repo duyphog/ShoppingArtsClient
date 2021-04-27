@@ -1,24 +1,24 @@
 import { Photo } from "./photo";
 import { Link } from "./Link";
 
-export interface Product {
-    Id : string;
-    ProductName : string;
-    ShortDescription : string;
-    LongDescription : string;
-    Stock : number;
-    Price : number;
-    Origin : string;
-    CategoryId :string;
-    Unlimited : boolean;
-    Location : string;
-    WarrantyPeriod : number;
-    PhotoUrl : string;
-    Photos : Photo[];
-    Status : boolean;
-    CreateBy : string;
-    CreateDate : Date;
-    ModifyBy : string;
-    ModifyDate : Date;
+export class Product {
+    id : string;
+    productName : string;
+    shortDescription : string;
+    longDescription : string;
+    stock : number;
+    price : number;
+    origin : string;
+    categoryId :string;
+    unlimited : boolean;
+    location : string;
+    warrantyPeriod : number;
+    photoUrl : string;
+    photos : Photo[];
+    status : boolean;
+    createBy : string;
+    createDate : Date;
+    modifyBy : string;
+    modifyDate : Date;
     links: Link[]
 }

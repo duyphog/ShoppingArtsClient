@@ -11,23 +11,6 @@ import { HttpBaseService } from '../_services/http-base.service';
   providedIn: 'root'
 })
 export class ProductService extends HttpBaseService {
-  // private endpoint = environment.endpoint;
-  // mergedUrl: string;
-  // constructor(
-  //     private httpClient: HttpClient, 
-  //     private paginationService: PaginationService,
-  //     private http) { }
-
-  // getProduct(): Promise<any> {
-  //   const mergedUrl =
-  //     `${this.endpoint}` + `product` +
-  //     `?PageNumber=${this.paginationService.page}&PageSize=${this.paginationService.pageSize
-  //     }`;
-
-  //   // return this.http.get<Product[]>(this.mergedUrl).toPromise();
-  //   return this.httpClient.get<Product[]>(mergedUrl, { observe: 'response' }).toPromise();
-  // }
-
   fireRequest(product: Product, method: string) {
     const links = product.links
       ? product.links.find(x => x.method === method)

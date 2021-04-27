@@ -1,4 +1,5 @@
 import { Photo } from "./photo";
+import { Link } from "./Link";
 
 export interface Product {
     Id : string;
@@ -19,4 +20,5 @@ export interface Product {
     CreateDate : Date;
     ModifyBy : string;
     ModifyDate : Date;
+    links: Link[]
 }

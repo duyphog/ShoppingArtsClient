@@ -21,6 +21,8 @@ import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
 import { ProductComponent } from './product/product.component';
 import { ProductService } from './_services/product.service';
+import { PaginationService } from './_services/pagination.service';
+import { HttpBaseService } from './_services/http-base.service';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { ProductService } from './_services/product.service';
     AccountService,
     GenderService,
     ProductService,
+    PaginationService,
+    HttpBaseService,
     {
       provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
     },

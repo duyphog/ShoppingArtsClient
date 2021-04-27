@@ -11,7 +11,7 @@ import { Register } from '../_models/register';
   providedIn: 'root'
 })
 export class AccountService {
-  private baseUrl = environment.mainUrl;
+  private baseUrl = environment.endpoint;
   private urlLogin = this.baseUrl + 'account/login';
   private urlRegister = this.baseUrl + "account";
 

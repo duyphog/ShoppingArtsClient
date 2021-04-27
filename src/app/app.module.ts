@@ -29,6 +29,11 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { Slider2Component } from './home/slider2/slider2.component';
 import { FooterComponent } from './footer/footer.component';
 
+import { ProfileEditComponent } from './account/myaccount/profile-edit/profile-edit.component';
+import { ProfilePwComponent } from './account/myaccount/profile-pw/profile-pw/profile-pw.component';
+import { MyhistoryComponent } from './account/myaccount/myhistory/myhistory/myhistory.component';
+import { ProfileComponent } from './account/myaccount/profile/profile/profile.component';
+
 
 @NgModule({
   declarations: [
@@ -43,6 +48,10 @@ import { FooterComponent } from './footer/footer.component';
     TabsComponent,
     Slider2Component,
     FooterComponent,
+    ProfileEditComponent,
+    ProfilePwComponent,
+    MyhistoryComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

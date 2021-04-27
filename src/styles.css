@@ -2544,7 +2544,7 @@ you can use the generic selector below, but it's slower:
 .featured-pro .new_title {margin-bottom:25px}
 
 .featured-pro .product-flexslider {margin:0px; margin-left:-15px; margin-right:-15px}
-.featured-pro .products-grid .item {margin-top:0px; padding:1px 1px 15px 1px; box-shadow: 0px 3px 8px -4px rgba(0,0,0,0.15);}
+.featured-pro .products-grid .item {     height: 420px; margin-top:0px; padding:1px 1px 15px 1px; box-shadow: 0px 3px 8px -4px rgba(0,0,0,0.15);}
 .featured-pro .products-grid .item .item-inner .item-img {margin:0px}
 
 .featured-products .flex-direction-nav a {
@@ -3175,7 +3175,8 @@ you can use the generic selector below, but it's slower:
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	margin-bottom:0px!important
+	margin-bottom:0px!important;
+	width: 25%;
 }
 .pdt-list .item.last {
 	margin-left: 2.4%;
@@ -4173,9 +4174,12 @@ margin:
 	overflow: hidden;
 }
 .products-grid .item .item-inner .item-img .item-img-info a.product-image {
+	height: 338px;
 	width: 100%;
 }
 .products-grid .item .item-inner .item-img .item-img-info a.product-image img {
+	height: 100%;
+	object-fit: cover;
 	width: 100%;
 }
 .products-grid .item .item-inner .item-img .item-img-info a.product-image img {
@@ -13407,4 +13411,25 @@ website:    http://www.themepunch.com
 }
 .mat-tab-nav-bar, .mat-tab-header {
     border-bottom: none;
+}
+.slide_item{
+	height: 425px;
+}
+.slide_item img{
+
+}
+.mat-tab-body-wrapper .products-grid .item .item-inner .item-img{
+	height: 250px;
+}
+.mat-tab-body-wrapper .products-grid .item .item-inner .item-img .item-img-info{
+	height: 250px;
+}
+footer{
+	margin-top: 50px;
+}
+.main-wrapper[_ngcontent-vof-c148] .mat-card[_ngcontent-vof-c148], .main-wrapper[_ngcontent-ogr-c147] .mat-card[_ngcontent-ogr-c147]{
+	border: 1px solid;
+}
+.block-account {
+    width: 334px;
 }

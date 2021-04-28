@@ -197,9 +197,7 @@
                     <!-- Header Top Links -->
                     <div class="toplinks">
                         <div class="links">
-                            <div *ngIf="(currentUser$) as user">
-                                *ngIf="{{user.roles('admin')}}"
-                                
+                            <div *ngIf="(currentUser$) as user">                                
                                 <div class="myaccount"><a title="Admin" href="/admin"><span class="hidden-xs">Admin</span></a></div>
                             </div>
                             <div *ngIf="(currentUser$ | async) as user">

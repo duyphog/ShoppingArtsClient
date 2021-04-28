@@ -33,6 +33,7 @@ import { ProfileEditComponent } from './account/myaccount/profile-edit/profile-e
 import { ProfilePwComponent } from './account/myaccount/profile-pw/profile-pw/profile-pw.component';
 import { MyhistoryComponent } from './account/myaccount/myhistory/myhistory/myhistory.component';
 import { ProfileComponent } from './account/myaccount/profile/profile/profile.component';
+import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 
 
 @NgModule({
@@ -52,6 +53,7 @@ import { ProfileComponent } from './account/myaccount/profile/profile/profile.co
     ProfilePwComponent,
     MyhistoryComponent,
     ProfileComponent,
+    AdminHomeComponent,
   ],
   imports: [
     BrowserModule,

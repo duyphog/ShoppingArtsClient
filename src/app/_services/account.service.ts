@@ -4,7 +4,6 @@ import {map} from 'rxjs/operators';
 import { User } from '../_models/user';
 import { ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
 import { Register } from '../_models/register';
 
 @Injectable({

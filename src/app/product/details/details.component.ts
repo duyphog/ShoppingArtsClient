@@ -21,7 +21,7 @@ export class DetailsComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.productService
-        .getSingle<Product>(id)
+        .getSingle<Product>('product',id)
         .subscribe(product => { this.product = product });
     }
   }

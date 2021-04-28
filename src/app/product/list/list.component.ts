@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Product } from 'src/app/_models/product';
 import { PaginationService } from 'src/app/_services/pagination.service';
+import {MatSortModule} from '@angular/material/sort';
 
 @Component({
   selector: 'app-list',
@@ -10,7 +11,7 @@ import { PaginationService } from 'src/app/_services/pagination.service';
 })
 export class ListComponent {
   dataSource = new MatTableDataSource<Product>();
-  displayedColumns: string[] = ['id', 'productName', 'longDescription', 'stock', 'actions'];
+  displayedColumns: string[] = ['photo', 'id', 'productName', 'price', 'stock', 'actions'];
 
   @Input('dataSource')
   set dataSourceForTable(value: Product[]) {

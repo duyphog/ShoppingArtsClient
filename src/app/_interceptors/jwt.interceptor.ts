@@ -19,14 +19,15 @@ export class JwtInterceptor implements HttpInterceptor {
     let currentUser: User;
 
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => currentUser = user);
-
+   
+    
     request = request.clone({
       setHeaders: {
-        'Content-Type':  'application/json',
-        'Accept': 'application/json'
+        'Content-Type':'application/json',
+        'Accept':'application/json'
       }
     })
-
+   
     if (currentUser) {
       request = request.clone({
         setHeaders: {
@@ -34,7 +35,7 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       })
     }
-
+    
     return next.handle(request);
   }
 }

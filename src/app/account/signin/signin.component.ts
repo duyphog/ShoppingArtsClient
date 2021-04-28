@@ -12,12 +12,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private accountService : AccountService,private router: Router, private toastr: ToastrService) { }
-
   model : any = {}
   currentUser$: Observable<User>
 
+  constructor(private accountService : AccountService,private router: Router, private toastr: ToastrService) { }
+
   ngOnInit(): void {
+    this.currentUser$ = this.accountService.currentUser$; 
+    if(this.currentUser$){
+      console.log(this.currentUser$);
+      
+      // this.router.navigateByUrl('/home');
+    }
+
   }
 
   signIn() {

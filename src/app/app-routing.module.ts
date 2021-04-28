@@ -8,7 +8,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'signin' },
   { path: 'home', component: HomeComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'aboutus', component: RegisterComponent }
 
 ];
 

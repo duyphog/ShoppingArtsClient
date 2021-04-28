@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PaginationService } from './pagination.service';
+import { stringify } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +22,16 @@ export class HttpBaseService {
   getAll<T>(patch: string) {
     const mergedUrl =
       `${this.endpoint}` + patch +
-      `?pageNumber=${this.paginationService.page}&pageSize=${this.paginationService.pageSize
-      }`;
+      `?pageNumber=${this.paginationService.page}&pageSize=${this.paginationService.pageSize}`;
 
     return this.httpClient.get<T>(mergedUrl, { observe: 'response' });
   }
 
-  getSingle<T>(id: string) {
-    return this.httpClient.get<T>(`${this.endpoint}${id}`);
+  getSingle<T>(patch: string, id: string) {
+    const mergedUrl =
+    `${this.endpoint}${patch}/${id}`;
+    
+    return this.httpClient.get<T>(mergedUrl);
   }
 
   add<T>(toAdd: T) {

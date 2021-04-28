@@ -1,10 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Product } from '../_models/product';
-import { ReplaySubject } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
-import { PaginationService } from '../_services/pagination.service';
 import { HttpBaseService } from '../_services/http-base.service';
 
 @Injectable({

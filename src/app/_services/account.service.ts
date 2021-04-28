@@ -11,17 +11,17 @@ import { Register } from '../_models/register';
   providedIn: 'root'
 })
 export class AccountService {
-  private baseUrl = environment.endpoint;
-  private urlLogin = this.baseUrl + 'account/login';
-  private urlRegister = this.baseUrl + "account";
+  private endpoint = environment.endpoint;
+  private patchLogin = this.endpoint + 'account/login';
+  private patchRegister = this.endpoint + "account";
 
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient) { }
-
+  
   signIn(model: any) {
-    return this.http.post<User>(this.urlLogin, model).pipe(
+    return this.http.post<User>(this.patchLogin, model).pipe(
       map((user: User) => {
         if (user) {
          this.setCurrentUser(user);
@@ -31,7 +31,7 @@ export class AccountService {
   }
 
   register(model: Register) {
-    return this.http.post<User>(this.urlRegister, JSON.stringify(model)).pipe(
+    return this.http.post<User>(this.patchRegister, JSON.stringify(model)).pipe(
       map((user: User) => {
         if (user) {
          this.setCurrentUser(user);
@@ -46,9 +46,9 @@ export class AccountService {
   }
 
   setCurrentUser(user: User) {
-    user.roles = [];
-    const roles = this.getDecodedToken(user.token).role;
-    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+    // user.roles = [];
+    // const roles = this.getDecodedToken(user.token).role;
+    // Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
   }

@@ -106,3 +106,11 @@ body {
 .main-wrapper .mat-form-field-appearance-legacy .mat-form-field-infix {
 	padding: 0.8375em 0;
 }
+
+.link-register {
+	text-align: left;
+	/* margin: px; */
+}
+.link-resetpassword {
+	margin-left: 135px;
+}

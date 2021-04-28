@@ -35,6 +35,9 @@ import { MyhistoryComponent } from './account/myaccount/myhistory/myhistory/myhi
 import { ProfileComponent } from './account/myaccount/profile/profile/profile.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+
 
 @NgModule({
   declarations: [
@@ -43,17 +46,21 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
     NavComponent,
     RegisterComponent,
     SigninComponent,
+    AboutUsComponent,
+    ContactUsComponent,
+    AdminHomeComponent,
+    ProfileComponent,
+    MyhistoryComponent,
+    ProfilePwComponent,
+    ProfileEditComponent,
+    TabsComponent,
+    Slider1Component,
+    FooterComponent,
     HeaderComponent,
     SlideComponent,
-    Slider1Component,
-    TabsComponent,
-    Slider2Component,
-    FooterComponent,
-    ProfileEditComponent,
-    ProfilePwComponent,
-    MyhistoryComponent,
-    ProfileComponent,
-    AdminHomeComponent,
+    Slider2Component
+
+
   ],
   imports: [
     BrowserModule,
@@ -61,7 +68,7 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
     AngularMaterialModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    CarouselModule ,
+    CarouselModule,
     MatTabsModule,
     [FormsModule, ReactiveFormsModule],
     FlexLayoutModule,

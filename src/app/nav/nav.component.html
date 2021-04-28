@@ -96,7 +96,8 @@
                     </div>
                     <!-- End Header Currency -->
 
-                    <div class="welcome-msg hidden-xs"> Hi {{currentUser$}}!</div>
+                    <div class="welcome-msg hidden-xs" *ngIf="(accountService.currentUser$ | async) as user"> Hi {{user.username | titlecase}}</div>
+                    <div class="welcome-msg hidden-xs" *ngIf="!(accountService.currentUser$ | async) as user"> Hi customer!</div>
                 </div>
                 <div class="col-xs-5 col-sm-6">
 
@@ -195,10 +196,11 @@
 
                     <!-- Header Top Links -->
                     <div class="toplinks">
-
                         <div class="links">
                             <div *ngIf="(currentUser$) as user">
-                                <div class="myaccount"><a titlcurrentUser$e="Admin" href="/admin"><span class="hidden-xs">Admin</span></a></div>
+                                *ngIf="{{user.roles('admin')}}"
+                                
+                                <div class="myaccount"><a title="Admin" href="/admin"><span class="hidden-xs">Admin</span></a></div>
                             </div>
                             <div *ngIf="(currentUser$ | async) as user">
                                 <div class="myaccount"><a title="My Account" href="/profile"><span class="hidden-xs">My
@@ -214,9 +216,9 @@
                             <!-- End Header Company -->
 
                             <div *ngIf="!(currentUser$ | async) as user">
-                                <div class="login"><a routerLink="/signin"><span class="hidden-xs">Log In</span></a>
+                                <div class="login"><a routerLink="../signin"><span class="hidden-xs">Log In</span></a>
                                 </div>
-                                <div class="login"><a routerLink="/register"><span class="hidden-xs">Sign up</span></a>
+                                <div class="login"><a routerLink="../register"><span class="hidden-xs">Sign up</span></a>
                                 </div>
                             </div>
                         </div>

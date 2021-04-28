@@ -10,11 +10,18 @@ import { MyhistoryComponent } from 'src/app/account/myaccount/myhistory/myhistor
 import { HomeComponent } from 'src/app/home/home.component'
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  {
+    path: '', component: HomeComponent,
+    children: [
+      { path: 'login', component: SigninComponent },
+      { path: 'register', component: RegisterComponent }
+    ]
+  },
+
   // { path: '', pathMatch: 'full', redirectTo: 'signin' },
   // { path: 'home', component: HomeComponent },
-  { path: 'signin', component: SigninComponent },
-  { path: 'register', component: RegisterComponent },
+  // { path: 'signin', component: SigninComponent },
+  // { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'profile-edit', component: ProfileEditComponent },
   { path: 'profile-password', component: ProfilePwComponent },

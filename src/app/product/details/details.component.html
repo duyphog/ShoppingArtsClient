@@ -1,9 +1,128 @@
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-      <!-- <input matInput placeholder="Name" [(ngModel)]="customer.name" name="name"> -->
-    </mat-form-field>
-    <br/>
-    <button mat-raised-button color="primary" (click)="save()">Save</button>
-    <a mat-raised-button color="primary" [routerLink]="['/product']">Back</a>
-  </form>
-  
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="box">
+
+    <mat-card-header>
+      <mat-card-title>{{title}}</mat-card-title>
+      <mat-card-subtitle>ID: {{product.id}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <form class="product-form" #myForm="ngForm">
+
+      <mat-card-content>
+        <table class="field-full-width">
+
+          <tr>
+            <td>
+              <mat-form-field class="field-full-width">
+                <input matInput [(ngModel)]="product.productName" name="productName" placeholder="Product Name"
+                  value={{product.productName}}>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="field-full-width">
+                <mat-label>Category</mat-label>
+                <mat-select [(ngModel)]="product.categoryId" name="categoryId">
+                  <mat-option *ngFor="let item of categories" [value]="item.id">{{item.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <mat-form-field class="field-full-width">
+                <textarea matInput [(ngModel)]="product.shortDescription" name="shortDescription"
+                  placeholder="Short Description" value={{product.shortDescription}}></textarea>
+              </mat-form-field>
+            </td>
+
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <mat-form-field class="field-full-width long-description">
+                <textarea rows="4" matInput [(ngModel)]="product.longDescription" name="longDescription"
+                  placeholder="Long Description" value={{product.longDescription}}></textarea>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-form-field class="field-full-width">
+                <input matInput [(ngModel)]="product.origin" name="origin" placeholder="Origin"
+                  value={{product.origin}}>
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="field-full-width">
+                <input matInput type="number" [(ngModel)]="product.warrantyPeriod" name="warrantyPeriod"
+                  placeholder="WarrantyPeriod" value={{product.warrantyPeriod}}>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td collspan="2">
+              <mat-form-field class="field-full-width">
+                <input matInput type="number" [(ngModel)]="product.stock" name="stock" placeholder="Stock"
+                  value={{product.stock}}>
+              </mat-form-field>
+            </td>
+
+            <td>
+              <mat-form-field class="field-full-width">
+                <input matInput [(ngModel)]="product.location" name="location" placeholder="Location"
+                  value={{product.location}}>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td collspan="2">
+              <mat-form-field class="field-full-width">
+                <input matInput type="number" [(ngModel)]="product.price" name="price" placeholder="Price"
+                  value={{product.price}}>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <section class="field-full-width">
+                <mat-checkbox [(ngModel)]="product.unlimited" name="status">Unlimited</mat-checkbox>
+              </section>
+            </td>
+            <td>
+              <section class="field-full-width">
+                <mat-checkbox [(ngModel)]="product.status" name="status">Status</mat-checkbox>
+              </section>
+            </td>
+          </tr>
+          <div *ngIf="product.photos">
+            <p>Photos</p>
+            <mat-grid-list cols="5">
+              <mat-grid-tile *ngFor="let item of product.photos">
+                <img class="grid-image" src={{item.url}} >
+                <button mat-icon-button color="warn" (click)="deletePhoto(item.id)"><mat-icon>highlight_off</mat-icon></button>
+              </mat-grid-tile>
+            </mat-grid-list>
+          </div>
+
+          <tr>
+            <input class="uploadFile" type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile" multiple="multiple" accept="image/*" />
+          </tr>
+
+        </table>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <div class="btn-center">
+          <button mat-stroked-button color="primary" type="submit" (click)="save()"><mat-icon>save</mat-icon> Save</button>
+          <button mat-stroked-button color="warn" [routerLink]="['/product']"><mat-icon>cancel</mat-icon> Cancel</button>
+        </div>
+      </mat-card-actions>
+
+    </form>
+  </mat-card>
+</div>

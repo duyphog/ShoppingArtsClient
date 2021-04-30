@@ -14,6 +14,7 @@ import { HomeComponent } from './home//home.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './nav/nav.component';
 import { AccountService } from './_services/account.service';
+import { CategoryService } from './_services/category.service';
 import { GenderService } from './_services/gender.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
@@ -23,6 +24,7 @@ import { ProductService } from './_services/product.service';
 import { PaginationService } from './_services/pagination.service';
 import { HttpBaseService } from './_services/http-base.service';
 import { ProductModule } from './product/product.module';
+import { MatSelect } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -46,14 +48,14 @@ import { ProductModule } from './product/product.module';
     }),
     TabsModule.forRoot(),
     ProductModule
-
   ],
   providers: [
+    HttpBaseService,
     AccountService,
     GenderService,
     ProductService,
     PaginationService,
-    HttpBaseService,
+    CategoryService,
     {
       provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
     },

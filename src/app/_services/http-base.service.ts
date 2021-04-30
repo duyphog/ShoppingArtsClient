@@ -27,6 +27,11 @@ export class HttpBaseService {
     return this.httpClient.get<T>(mergedUrl, { observe: 'response' });
   }
 
+  getList<T>(patch: string) {
+    const mergedUrl = `${this.endpoint}` + patch;
+    return this.httpClient.get<T>(mergedUrl, { observe: 'response' });
+  }
+
   getSingle<T>(patch: string, id: string) {
     const mergedUrl =
     `${this.endpoint}${patch}/${id}`;

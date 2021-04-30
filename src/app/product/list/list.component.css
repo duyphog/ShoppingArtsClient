@@ -1,15 +1,50 @@
-.mat-form-field {
-  font-size: 14px;
+
+/* Structure */
+.grid-container {
+  position: relative;
+  min-height: 200px;
+  width: 90%;
+  overflow: auto; 
+  margin: auto;
+}
+
+.grid-table-container {
+  position: relative;
+  height: 750px;
+  overflow: auto;
+}
+
+table {
   width: 100%;
 }
 
-td, th {
-  width: 5%;
+.grid-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-th.mat-header-cell {
-  text-align: left;
-  max-width: 200px;
+.grid-rate-limit-reached {
+  color: #980000;
+  max-width: 360px;
+  text-align: center;
+}
+
+/* Column Widths */
+.mat-column-number,
+.mat-column-state {
+  max-width: 64px;
+}
+
+.mat-column-created {
+  max-width: 124px;
 }
 
 td > img {
@@ -18,4 +53,27 @@ td > img {
   padding: 5px;
   margin: 5px;
   width: 200px;
+  height: auto;
 }
+
+.mat-column-photo {
+  width: 250px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+}
+
+.mat-column-select {
+  overflow: initial;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  max-width: 200px;
+}
+

@@ -10,7 +10,7 @@ import { Product } from '../../_models/product'
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
-  private patch = "product/link";
+  private patch = "product";
   dataSource: Product[];
   totalCount: number;
 

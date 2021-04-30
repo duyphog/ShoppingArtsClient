@@ -1,0 +1,48 @@
+.main-wrapper {
+	height: 750px;
+	width: 85%;
+	margin: auto;
+}
+
+.product-form {
+	min-width: 150px;
+	width: 100%;
+}
+
+.field-full-width{
+	width: 100%;
+}
+
+.mat-grid-tile {
+	border-radius: 8px;
+	border: 1px solid #ddd;
+	width: 100%;
+}
+
+.grid-image {
+	width: 100%;
+	height: auto;
+}
+
+.uploadFile {
+	margin-top: 3px;
+}
+
+.mat-card-actions .btn-center {
+	position: relative;
+	display: flex;
+	justify-content: center;
+}
+
+.btn-center > button {
+	width: 120px;
+}
+
+.mat-icon-button{
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 5px;
+	line-height: 14px;
+	min-width: auto;
+}

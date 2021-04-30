@@ -8,10 +8,17 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { MatCardModule } from '@angular/material/card';
+import { MatSortModule } from '@angular/material/sort';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { ProductRoutes } from './product.routing';
 import { DetailsComponent } from './details/details.component';
 import { OverviewComponent } from './overview/overview.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDivider, MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -28,7 +35,14 @@ import { OverviewComponent } from './overview/overview.component';
     MatTableModule,
     MatIconModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatSelectModule,
+    MatCheckboxModule,
+    MatGridListModule,
+    MatDividerModule
   ],
   exports: [],
 })

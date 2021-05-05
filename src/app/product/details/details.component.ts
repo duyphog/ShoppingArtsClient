@@ -58,7 +58,6 @@ export class DetailsComponent implements OnInit {
     // return this.productName.hasError('productName') ? 'Not a valid productName' : '';
   }
 
-
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -82,26 +81,25 @@ export class DetailsComponent implements OnInit {
     this.productService.save(this.product, method).subscribe(
       () => {
         this.toastr.success("Save product success");
-      }, error => errors += error
-    );
 
-    if (this.filesToUpload.length > 0) {
+        if (this.filesToUpload.length > 0) {
 
-      const formData = new FormData();
-      for (let file of this.filesToUpload) {
-        formData.append('files', file, file.name);
+          const formData = new FormData();
+          for (let file of this.filesToUpload) {
+            formData.append('files', file, file.name);
+          }
+
+          this.productService.addPhotos(this.product.id, formData).subscribe(
+            () => {
+              this.toastr.success("Save photo success");
+            },
+          );
+          this.router.navigateByUrl("product");
+        } else {
+          this.router.navigateByUrl("product");
+        }
       }
-
-      this.productService.addPhotos(this.product.id, formData).subscribe(
-        () => {
-          this.toastr.success("Save photo success");
-        }, error => errors += error
-      );
-    }
-
-    if(errors.length == 0) {
-      this.router.navigateByUrl("product");
-    }
+    );
   }
 
   uploadFileEvt(event: any) {
@@ -124,7 +122,7 @@ export class DetailsComponent implements OnInit {
     this.filesToUpload.splice(index, 1);
   }
 
-  openDialogPhotoDelete(photo: Photo): void{
+  openDialogPhotoDelete(photo: Photo): void {
     const dialogRef = this.dialog.open(DialogConfirmDeletePhotoComponent, {
       width: '300px',
       data: {
@@ -134,7 +132,7 @@ export class DetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: Photo) => {
-      if(result){
+      if (result) {
         this.productService.deletePhoto(photo.id).subscribe(
           () => {
             this.toastr.success("Success", "Delete Photo");
@@ -145,7 +143,7 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  openDialogIsMain(photo: Photo): void{
+  openDialogIsMain(photo: Photo): void {
     const dialogRef = this.dialog.open(DialogConfirmDeletePhotoComponent, {
       width: '300px',
       data: {
@@ -155,7 +153,7 @@ export class DetailsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result: Photo) => {
-      if(result){
+      if (result) {
         this.productService.setPhotoIsMain(this.product.id, result.id).subscribe(
           (photos: Photo[]) => {
             this.toastr.success("Success", "Set image main");
@@ -166,7 +164,7 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  
+
 }
 function data(data: any) {
   throw new Error('Function not implemented.');

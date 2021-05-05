@@ -16,7 +16,7 @@
                             <mat-expansion-panel-header>
                                 Query on database
                             </mat-expansion-panel-header>
-                            <form [formGroup]="queryForm" (ngSubmit)="submitQuery()">
+                            <form [formGroup]="queryForm">
                                 <table>
                                     <tr>
                                         <td>
@@ -56,10 +56,14 @@
                                             </mat-form-field>
                                         </td>
                                         <td>
-                                            <button mat-stroked-button color="accent">
+                                            <button mat-stroked-button color="accent" (click)="submitQuery()"> 
                                                 <mat-icon>query_stats</mat-icon> Query
+                                            </button> 
+                                            <button mat-stroked-button color="primary" (click)="clearQuery()"> 
+                                                <mat-icon>refresh</mat-icon> Clear
                                             </button>
                                         </td>
+
                                     </tr>
                                 </table>
                             </form>

@@ -2,17 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { PaginationService } from 'src/app/_services/pagination.service';
 import { ProductService } from 'src/app/_services/product.service';
-import { Product } from '../../_models/product'
+import { Product } from '../../_models/product';
+import { ProductQuery } from '../../_models/productQuery';
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
+
 export class OverviewComponent implements OnInit {
-  private patch = "product";
   dataSource: Product[];
-  totalCount: number;
+  private productQuery = new ProductQuery;
 
   constructor(
     private productService: ProductService,
@@ -28,17 +29,33 @@ export class OverviewComponent implements OnInit {
     this.getAllProduct();
   }
 
-  delete(product: Product) {
-    this.productService.fireRequest(product, 'DELETE')
-      .subscribe(() => {
-        this.dataSource = this.dataSource.filter(x => x.id !== product.id);
-      });
+  queryData(data: ProductQuery){
+    this.productQuery = data;
+    this.getAllProduct();
   }
+
+  delete(product: Product) {
+    this.productService.delete(product.id).subscribe(
+      () => {
+        let index = this.dataSource.indexOf(product);
+        product.status = false;
+        this.dataSource[index] = product;
+      }
+    )
+  }
+
   getAllProduct() {
-    this.productService.getAll<Product[]>(this.patch)
-      .subscribe((result: any) => {
-        this.dataSource = result.body.value;       
-        this.totalCount = JSON.parse(result.headers.get('X-Pagination')).TotalItems;
-      });
+    this.productService.getAll(this.productQuery).subscribe(
+        (result: any) => {
+          this.dataSource = result.body;
+
+          const paginationHeader = JSON.parse(result.headers.get('X-Pagination'));
+          this.paginationService.totalItems = paginationHeader.totalItems;
+          this.paginationService.totalPages = paginationHeader.totalPages;
+          this.paginationService.pageNumber = paginationHeader.currentPage;
+          this.paginationService.pageSize = paginationHeader.pageSize
+          this.paginationService.hasNext = paginationHeader.hasNext
+          this.paginationService.hasPrevious = paginationHeader.hasPrevious
+    });
   }
 }

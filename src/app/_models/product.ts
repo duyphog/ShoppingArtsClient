@@ -20,5 +20,4 @@ export class Product {
     createDate : Date;
     modifyBy : string;
     modifyDate : Date;
-    links: Link[]
 }

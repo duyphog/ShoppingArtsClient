@@ -4,6 +4,6 @@ import { OverviewComponent } from './overview/overview.component';
 
 export const ProductRoutes: Routes = [
     { path: 'product', component: OverviewComponent },
-    { path: 'details', component: DetailsComponent },
-    { path: 'details/:id', component: DetailsComponent }
+    { path: 'product/details', component: DetailsComponent },
+    { path: 'product/details/:id', component: DetailsComponent }
 ];

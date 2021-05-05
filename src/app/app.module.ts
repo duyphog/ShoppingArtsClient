@@ -24,7 +24,7 @@ import { ProductService } from './_services/product.service';
 import { PaginationService } from './_services/pagination.service';
 import { HttpBaseService } from './_services/http-base.service';
 import { ProductModule } from './product/product.module';
-import { MatSelect } from '@angular/material/select';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
   declarations: [
@@ -44,10 +44,14 @@ import { MatSelect } from '@angular/material/select';
     FlexLayoutModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
-      positionClass: 'toast-top-right'
+      timeOut: 2000,
+      extendedTimeOut: 1000,
+      progressBar: true,
+      positionClass: 'toast-top-right',
     }),
     TabsModule.forRoot(),
-    ProductModule
+    ProductModule,
+    NgHttpLoaderModule.forRoot()
   ],
   providers: [
     HttpBaseService,

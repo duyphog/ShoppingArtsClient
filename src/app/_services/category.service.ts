@@ -6,28 +6,10 @@ import { HttpBaseService } from './http-base.service';
   providedIn: 'root'
 })
 export class CategoryService extends HttpBaseService {
-  public patchUrl = "category";
+  private urlPatch = "category";
+  private url = this.endpoint + this.urlPatch;
 
-  fireRequest(category: Category, method: string) {
-    const links = category.links
-      ? category.links.find(x => x.method === method)
-      : null;
-
-    switch (method) {
-      case "DELETE": {
-        return super.delete(links.href);
-      }
-      case 'POST': {
-        return super.add<Category>(category);
-      }
-      case 'PUT': {
-        return super.update<Category>(links.href, category);
-      }
-      default: {
-        console.log(`${links.method} not found!!!`);
-        break;
-      }
-    }
+  getList(){
+    return this.httpClient.get(this.url, { observe: 'response' });
   }
-  
 }

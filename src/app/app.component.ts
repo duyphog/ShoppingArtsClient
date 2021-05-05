@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AccountService } from '../app/_services/account.service'
 import { User } from './_models/user';
-
+import { Spinkit } from 'ng-http-loader';
  
 @Component({
   selector: 'app-root',
@@ -11,7 +11,8 @@ import { User } from './_models/user';
 export class AppComponent {
   title = 'Client';
   user: any;
-
+  public spinkit = Spinkit;
+  
   constructor(private accountService: AccountService){
   }
 

@@ -34,6 +34,7 @@ import { MatDatepickerModule,  } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const materialModules = [
   CdkTreeModule,
@@ -69,7 +70,8 @@ const materialModules = [
   MatDatepickerModule,
   MatTooltipModule,
   MatNativeDateModule,
-  MatMomentDateModule
+  MatMomentDateModule,
+  BrowserAnimationsModule
 ];
 
 export const MY_NATIVE_DATE_FORMATS = {

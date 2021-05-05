@@ -15,7 +15,6 @@ export class ProductService extends HttpBaseService {
   private urlPhoto = this.endpoint + this.urlPatchPhoto;
 
   getAll(productQuery: ProductQuery) {
-    debugger;
     let params = new HttpParams();
     params = params.append("pageNumber", this.paginationService.pageNumber.toString())
     params = params.append("pageSize", this.paginationService.pageSize.toString());
@@ -33,7 +32,7 @@ export class ProductService extends HttpBaseService {
       : params;
 
     if(productQuery.stockValue != null){
-      params = params.append("stockPrefix", productQuery.prefixStock.toString());
+      params = params.append("prefixStock", productQuery.prefixStock.toString());
       params = params.append("stockValue", productQuery.stockValue);
     }
 

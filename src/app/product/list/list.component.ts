@@ -78,4 +78,8 @@ export class ListComponent{
   submitQuery(){
     this.onQueryData.emit(this.queryForm.value);
   }
+
+  clearQuery(){
+    this.queryForm.reset();
+  }
 }

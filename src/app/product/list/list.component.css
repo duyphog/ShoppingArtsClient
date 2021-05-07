@@ -58,12 +58,16 @@ td > img {
   width: 250px;
 }
 
-.field-filter {
-  font-size: 14px;
+.field-filter{
   width: 100%;
   padding-left: 50px;
-  padding-right: 50px;
+  /* padding-right: 50px; */
   padding-top: 10px;
+}
+
+.field-filter .mat-form-field {
+  font-size: 14px;
+  width: 100%;
 }
 
 .mat-column-select {
@@ -75,3 +79,9 @@ th.mat-header-cell {
   max-width: 200px;
 }
 
+.btn-add {
+  width: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 10px;
+}

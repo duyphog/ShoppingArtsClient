@@ -45,12 +45,12 @@ export class ProductService extends HttpBaseService {
     return this.httpClient.get(mergedUrl);
   }
 
-  save(data: Product, method: string) {
+  save(id: string, data: FormData, method: string) {
     switch (method) {
       case "POST":
-        return this.httpClient.post<Product>(this.url, data);
+        return this.httpClient.post<Product>(this.url, data, { headers: this.headers });
       case "PUT":
-        return this.httpClient.put<Product>(`${this.url}/${data.id}`, data);
+        return this.httpClient.put<Product>(`${this.url}/${id}`, data, { headers: this.headers });
       default:
         console.log(`${method} not found!!!`);
         break;

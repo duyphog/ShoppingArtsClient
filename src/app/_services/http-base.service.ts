@@ -14,7 +14,5 @@ export class HttpBaseService {
     protected httpClient: HttpClient,
     protected paginationService: PaginationService
   ) {
-    // this.headers = this.headers.set('Content-Type', 'application/json');
-    // this.headers = this.headers.set('Accept', 'application/json');
   }
 }

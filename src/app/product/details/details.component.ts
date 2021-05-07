@@ -9,7 +9,15 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmDeletePhotoComponent } from '../dialog-confirm-delete-photo/dialog-confirm-delete-photo.component';
 import { Photo } from 'src/app/_models/photo';
-import { ResourceLoader } from '@angular/compiler';
+
+export class InfoProduct{
+  id: string;
+  photos: Photo[];
+  createBy: string;
+  createDate: Date;
+  modifyBy: string;
+  modifyDate: Date;
+}
 
 @Component({
   selector: 'app-details',
@@ -19,14 +27,27 @@ import { ResourceLoader } from '@angular/compiler';
 
 export class DetailsComponent implements OnInit {
   categories: Category[];
-  product = new Product();
-  public title = "Add Product";
-  fileAttr = 'Choose File';
-  isCreate: boolean = true;
+  infoEntity = new InfoProduct;
+
   urlSelect: Array<string> = [];
   filesToUpload: Array<File> = [];
 
-  uploadForm: FormGroup;
+  formDetail = this.formBuilder.group({
+    'id': null,
+    'productName': [null, Validators.required],
+    'categoryId': [null, Validators.required],
+    'shortDescription': [null, Validators.required],
+    'longDescription': null,
+    'origin': null,
+    'stock': null,
+    'unlimited': false,
+    'warrantyPeriod': false,
+    'location': null,
+    'status': true,
+    'price': [null, Validators.required]
+  },
+    // { validators: productDetailValidator }
+  );
 
   constructor(
     private productService: ProductService,
@@ -38,35 +59,38 @@ export class DetailsComponent implements OnInit {
     private dialog: MatDialog
   ) { }
 
-  validations_form = this.formBuilder.group({
-    productName: new FormControl(null, Validators.required,),
-    price: new FormControl(null, [Validators.required, Validators.pattern("^[0-9]*$")])
-    // email: new FormControl('', Validators.compose([
-    //   Validators.required,
-    //   Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
-    // ]))
-  });
-
-  getErrorMessage() {
-    // if (this.validations_form.productName.hasError('required')) {
-    //   return 'You must enter a value';
-    // }
-    // if(this.price.hasError('pattern')){
-    //   return 'you input number';
-    // }
-
-    // return this.productName.hasError('productName') ? 'Not a valid productName' : '';
-  }
-
   ngOnInit(): void {
+
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.productService
         .getSingle(id)
-        .subscribe((product: Product) => { this.product = product });
+        .subscribe((product: Product) => {
+          this.infoEntity = {
+            id: product.id,
+            photos: product.photos,
+            createBy : product.createBy,
+            createDate : new Date(product.createDate),
+            modifyBy : product.modifyBy,
+            modifyDate : new Date(product.modifyDate)
+          }
 
-      this.title = "Edit Product";
-      this.isCreate = false;
+          this.formDetail.setValue({
+            id: product.id,
+            productName: product.productName,
+            categoryId: product.categoryId,
+            shortDescription: product.shortDescription ?? null,
+            longDescription: product.longDescription ?? null,
+            origin: product.origin ?? null,
+            stock: product.stock ?? null,
+            unlimited: product.unlimited ?? null,
+            warrantyPeriod: product.warrantyPeriod ?? null,
+            location: product.location ?? null,
+            status: product.status ?? null,
+            price: product.price ?? null,
+          });
+          this.formDetail.controls["categoryId"].disable();
+        });
     }
 
     this.categoryService.getList().subscribe(
@@ -76,28 +100,29 @@ export class DetailsComponent implements OnInit {
   }
 
   save() {
-    const method = this.isCreate ? 'POST' : 'PUT';
-    let errors = "";
-    this.productService.save(this.product, method).subscribe(
+    if (!this.formDetail.valid) {
+      this.toastr.warning("Invalid form");
+      return;
+    }
+
+    let formData = new FormData();
+    const data = this.formDetail.value;
+    Object.keys(data).forEach(key => {
+      formData.append(key, data[key]);
+    });
+
+    if (this.filesToUpload.length > 0) {
+      for (let file of this.filesToUpload) {
+        formData.append('files', file, file.name);
+      }
+    }
+
+    const method = this.infoEntity.id == undefined ? 'POST' : 'PUT';
+    const productId = this.infoEntity.id == undefined ? null : this.infoEntity.id;
+    this.productService.save(productId, formData, method).subscribe(
       () => {
-        this.toastr.success("Save product success");
-
-        if (this.filesToUpload.length > 0) {
-
-          const formData = new FormData();
-          for (let file of this.filesToUpload) {
-            formData.append('files', file, file.name);
-          }
-
-          this.productService.addPhotos(this.product.id, formData).subscribe(
-            () => {
-              this.toastr.success("Save photo success");
-            },
-          );
-          this.router.navigateByUrl("product");
-        } else {
-          this.router.navigateByUrl("product");
-        }
+        this.toastr.success(`${this.infoEntity.id ? "Create" : "Update"} success`);
+        this.router.navigateByUrl("product");
       }
     );
   }
@@ -136,7 +161,7 @@ export class DetailsComponent implements OnInit {
         this.productService.deletePhoto(photo.id).subscribe(
           () => {
             this.toastr.success("Success", "Delete Photo");
-            this.product.photos = this.product.photos.filter(x => x.id != result.id);
+            this.infoEntity.photos = this.infoEntity.photos.filter(x => x.id != result.id);
           }
         );
       }
@@ -154,19 +179,13 @@ export class DetailsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: Photo) => {
       if (result) {
-        this.productService.setPhotoIsMain(this.product.id, result.id).subscribe(
+        this.productService.setPhotoIsMain(this.infoEntity.id, result.id).subscribe(
           (photos: Photo[]) => {
             this.toastr.success("Success", "Set image main");
-            this.product.photos = photos;
+            this.infoEntity.photos = photos;
           }
         );
       }
     });
   }
-
-
 }
-function data(data: any) {
-  throw new Error('Function not implemented.');
-}
-

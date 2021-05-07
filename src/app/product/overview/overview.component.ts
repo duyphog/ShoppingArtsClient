@@ -33,6 +33,7 @@ export class OverviewComponent implements OnInit {
 
   queryData(data: ProductQuery){
     this.productQuery = data;
+    this.paginationService.pageNumber =1;
     this.getAllProduct();
   }
 

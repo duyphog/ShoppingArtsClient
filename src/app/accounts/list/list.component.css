@@ -1,0 +1,78 @@
+.grid-container {
+    position: relative;
+    min-height: 200px;
+    width: 90%;
+    overflow: auto; 
+    margin: auto;
+  }
+  
+  .grid-table-container {
+    position: relative;
+    height: 750px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .grid-loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 56px;
+    right: 0;
+    background: rgba(0, 0, 0, 0.15);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .grid-rate-limit-reached {
+    color: #980000;
+    max-width: 360px;
+    text-align: center;
+  }
+  
+  
+  .mat-column-number,
+  .mat-column-state {
+    max-width: 64px;
+  }
+  
+  .mat-column-created {
+    max-width: 124px;
+  }
+  
+  td > img {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 5px;
+    margin: 5px;
+    width: 200px;
+    height: auto;
+  }
+  
+  .mat-column-photo {
+    width: 250px;
+  }
+  
+  .field-filter {
+    font-size: 14px;
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 10px;
+  }
+  
+  .mat-column-select {
+    overflow: initial;
+  }
+  
+  th.mat-header-cell {
+    text-align: left;
+    max-width: 200px;
+  }
+  
+  

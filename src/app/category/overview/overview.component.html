@@ -1,0 +1,7 @@
+<!-- <a mat-raised-button color="primary" href="" [routerLink]="['/details']">Add new Product</a> -->
+<app-list 
+    [dataSource]="dataSource"
+    (onDeleteProduct)="delete($event)"
+    (onPageSwitch)="switchPage($event)"
+    (onQueryData)="queryData($event)"
+></app-list>

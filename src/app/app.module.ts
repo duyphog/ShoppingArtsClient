@@ -25,6 +25,10 @@ import { PaginationService } from './_services/pagination.service';
 import { HttpBaseService } from './_services/http-base.service';
 import { ProductModule } from './product/product.module';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { CategoryModule } from './category/category.module'
+import { from } from 'rxjs';
+import { AccountsModule } from './accounts/accounts.module'
+import { AccountsService } from './_services/accounts.service'
 
 @NgModule({
   declarations: [
@@ -51,6 +55,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     }),
     TabsModule.forRoot(),
     ProductModule,
+    CategoryModule,
+    AccountsModule,
     NgHttpLoaderModule.forRoot()
   ],
   providers: [
@@ -58,6 +64,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     AccountService,
     GenderService,
     ProductService,
+    AccountsService,
     PaginationService,
     CategoryService,
     {

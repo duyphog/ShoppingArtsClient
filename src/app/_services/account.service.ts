@@ -5,7 +5,9 @@ import { User } from '../_models/user';
 import { ReplaySubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Register } from '../_models/register';
+import { HttpParams } from '@angular/common/http';
 
+import { HttpBaseService } from './http-base.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +15,9 @@ export class AccountService {
   private endpoint = environment.endpoint;
   private patchLogin = this.endpoint + 'account/login';
   private patchRegister = this.endpoint + "account";
-
+  private urlPatch = "account";
+  private url = this.endpoint + this.urlPatch;
+  
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
@@ -55,4 +59,6 @@ export class AccountService {
   getDecodedToken(token) {
     return JSON.parse(atob(token.split('.')[1]));
   }
+
+
 }

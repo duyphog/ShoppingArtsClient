@@ -1,51 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { from } from 'rxjs';
+import { AccountsService } from 'src/app/_services/accounts.service';
 import { PaginationService } from 'src/app/_services/pagination.service';
-import { ProductService } from 'src/app/_services/product.service';
-import { Product } from '../../_models/product';
-import { ProductQuery } from '../../_models/productQuery';
+import { Account } from '../../_models/account'
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
-
 export class OverviewComponent implements OnInit {
-  dataSource: Product[];
-  private productQuery = new ProductQuery;
-
+  dataSource: Account[];
+  private accountQuery = new Account;
   constructor(
-    private productService: ProductService,
-    private paginationService: PaginationService
+    private accountsService: AccountsService,
+    private paginationService: PaginationService 
   ) { }
 
   ngOnInit(): void {
-    this.getAllProduct();
+    this.getAllAccount();
   }
 
   switchPage(event: PageEvent) {
     this.paginationService.change(event);
-    this.getAllProduct();
+    this.getAllAccount();
   }
 
-  queryData(data: ProductQuery){
-    this.productQuery = data;
-    this.getAllProduct();
+  queryData(data: Account){
+    this.accountQuery = data;
+    this.getAllAccount();
   }
 
-  delete(product: Product) {
-    this.productService.delete(product.id).subscribe(
-      () => {
-        let index = this.dataSource.indexOf(product);
-        product.status = false;
-        this.dataSource[index] = product;
-      }
-    )
-  }
-
-  getAllProduct() {
-    this.productService.getAll(this.productQuery).subscribe(
+  getAllAccount() {
+    this.accountsService.getList().subscribe(
         (result: any) => {
           this.dataSource = result.body;
 
@@ -58,5 +46,16 @@ export class OverviewComponent implements OnInit {
           this.paginationService.hasPrevious = paginationHeader.hasPrevious
     });
   }
-  
+  delete(acount: Account) {
+    // this.productService.delete(product.id).subscribe(
+    //   () => {
+    //     let index = this.dataSource.indexOf(product);
+    //     product.status = false;
+    //     this.dataSource[index] = product;
+    //   }
+    // )
+  }
+
+
+
 }

@@ -72,7 +72,7 @@ export class ListComponent{
     productName: null,
     prefixStock: "-1",
     stockValue: null,
-    statusType: "-1"
+    statusType: "1"
   });
 
   submitQuery(){

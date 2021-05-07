@@ -17,7 +17,7 @@ import { AccountService } from './_services/account.service';
 import { CategoryService } from './_services/category.service';
 import { GenderService } from './_services/gender.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
 import { ProductService } from './_services/product.service';
@@ -25,6 +25,8 @@ import { PaginationService } from './_services/pagination.service';
 import { HttpBaseService } from './_services/http-base.service';
 import { ProductModule } from './product/product.module';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
+import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,9 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     HomeComponent,
     NavComponent,
     RegisterComponent,
-    SigninComponent
+    SigninComponent,
+    ServerErrorComponent,
+    NotFoundErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -60,12 +64,9 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
     ProductService,
     PaginationService,
     CategoryService,
-    {
-      provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
-    }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: DEFAULT_TIMEOUT, useValue: 10000 }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

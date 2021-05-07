@@ -65,7 +65,6 @@ export class PaginationService {
   }
 
   change(pageEvent: PageEvent) {
-    console.log(pageEvent);
     this.paginationModel.pageNumber = pageEvent.pageIndex + 1;
     this.paginationModel.pageSize = pageEvent.pageSize;
   }

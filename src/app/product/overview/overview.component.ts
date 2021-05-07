@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { ToastrService } from 'ngx-toastr';
 import { PaginationService } from 'src/app/_services/pagination.service';
 import { ProductService } from 'src/app/_services/product.service';
 import { Product } from '../../_models/product';
@@ -17,7 +18,8 @@ export class OverviewComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private paginationService: PaginationService
+    private paginationService: PaginationService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +42,7 @@ export class OverviewComponent implements OnInit {
         let index = this.dataSource.indexOf(product);
         product.status = false;
         this.dataSource[index] = product;
+        this.toastr.success("Success");
       }
     )
   }

@@ -17,7 +17,7 @@ import { AccountService } from './_services/account.service';
 import { CategoryService } from './_services/category.service';
 import { GenderService } from './_services/gender.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
 import { ProductService } from './_services/product.service';
@@ -25,15 +25,16 @@ import { PaginationService } from './_services/pagination.service';
 import { HttpBaseService } from './_services/http-base.service';
 import { ProductModule } from './product/product.module';
 import { NgHttpLoaderModule } from 'ng-http-loader';
-<<<<<<< HEAD
-import { CategoryModule } from './category/category.module'
+
+import { CategoryModule } from './category/category.module';
 import { from } from 'rxjs';
-import { AccountsModule } from './accounts/accounts.module'
-import { AccountsService } from './_services/accounts.service'
-=======
+import { AccountsModule } from './accounts/accounts.module';
+import { AccountsService } from './_services/accounts.service';
+import { RoleService } from './_services/role.service';
+
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error.component';
->>>>>>> a83ba7eea7faddce2fefd0d78baf436ecca9f4a0
+
 
 @NgModule({
   declarations: [
@@ -72,11 +73,12 @@ import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error
     GenderService,
     ProductService,
     AccountsService,
+    RoleService,
     PaginationService,
     CategoryService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: DEFAULT_TIMEOUT, useValue: 10000 }
+    // { provide: DEFAULT_TIMEOUT, useValue: 10000 }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

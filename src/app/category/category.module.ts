@@ -39,7 +39,7 @@ import { MatRadioModule} from '@angular/material/radio';
     CommonModule,
     RouterModule.forChild(CategoryRoutes),
     MatPaginatorModule,
-    MatButtonModule,
+    MatButtonModule, 
     MatTableModule,
     MatIconModule,
     MatInputModule,

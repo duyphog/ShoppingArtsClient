@@ -15,6 +15,16 @@ export class DetailsComponent implements OnInit {
   categories: Category[];
   public title = "Add Product";
   isCreate: boolean = true;
+
+  formDetail = this.formBuilder.group({
+    'id': null,
+    'name': [null, Validators.required],
+    'description': [null, Validators.required],
+    'status': true
+  },
+    // { validators: productDetailValidator }
+  );
+
   constructor(
     private categoryService: CategoryService,
     private route: ActivatedRoute,
@@ -26,47 +36,47 @@ export class DetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    // if (id) {
-    //   this.categoryService.
-    //     .getSingle(id)
-    //     .subscribe((product: Product) => { this.product = product });
+    if (id) {
+      this.categoryService
+        .getSingle(id)
+        .subscribe((category: Category) => { this.formDetail.setValue({
+          id: category.id,
+          name: category.name,
+          description: category.description,
+          status: category.status
+        });
+       });
 
-    //   this.title = "Edit Product";
-    //   this.isCreate = false;
-    // }
+      this.title = "Edit Product";
+      this.isCreate = false;
+    }
 
-    this.categoryService.getList().subscribe(
-      (result: any) => {
-        this.categories = result.body;
-      });
+  
   }
 
 
   save() {
-    // const method = this.isCreate ? 'POST' : 'PUT';
-    // let errors = "";
-    // this.categoryService.save(this.product, method).subscribe(
-    //   () => {
-    //     this.toastr.success("Save product success");
+   
+    if (!this.formDetail.valid) {
+      this.toastr.warning("Invalid form");
+      return;
+    }
 
-    //     if (this.filesToUpload.length > 0) {
+    let formData = new FormData();
+    const data = this.formDetail.value;
+    Object.keys(data).forEach(key => {
+      formData.append(key, data[key]);
+    });
 
-    //       const formData = new FormData();
-    //       for (let file of this.filesToUpload) {
-    //         formData.append('files', file, file.name);
-    //       }
 
-    //       this.productService.addPhotos(this.product.id, formData).subscribe(
-    //         () => {
-    //           this.toastr.success("Save photo success");
-    //         },
-    //       );
-    //       this.router.navigateByUrl("product");
-    //     } else {
-    //       this.router.navigateByUrl("product");
-    //     }
-    //   }
-    // );
+    const method = this.formDetail.controls["id"] == undefined ? 'POST' : 'PUT';
+    const categoryId = this.formDetail.controls["id"] == undefined ? null : this.formDetail.controls["id"].value;
+    this.categoryService.save(categoryId, formData, method).subscribe(
+      () => {
+        this.toastr.success(`${this.formDetail.controls["id"] ? "Create" : "Update"} success`);
+        this.router.navigateByUrl("category");
+      }
+    );
   }
 
   deleteSelected(index: number) {

@@ -16,9 +16,24 @@ export class CategoryService extends HttpBaseService {
     return this.httpClient.get(this.url, { observe: 'response' });
   }
 
-  getCategory(): Observable<Category[]>{
-    return this.httpClient.get<Category[]>(this.url);
+  getSingle(id: string) {
+    const mergedUrl = `${this.url}/${id}`;
+    return this.httpClient.get(mergedUrl);
   }
+
+  
+  save(id: string, data: FormData, method: string) {
+    switch (method) {
+      case "POST":
+        return this.httpClient.post<Category>(this.url, data, { headers: this.headers });
+      case "PUT":
+        return this.httpClient.put<Category>(`${this.url}/${id}`, data, { headers: this.headers });
+      default:
+        console.log(`${method} not found!!!`);
+        break;
+    }
+  }
+
 
   delete(id: string) {
     const mergedUrl = `${this.url}/${id}`;

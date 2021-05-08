@@ -45,6 +45,9 @@ export class AccountsService extends HttpBaseService{
   //   return this.httpClient.get(mergedUrl, { params, observe: 'response' });
   // }
 
- 
+  getSingle(id: string) {
+    const mergedUrl = `${this.url}/${id}`;
+    return this.httpClient.get(mergedUrl);
+  }
 
 }

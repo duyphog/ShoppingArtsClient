@@ -34,7 +34,7 @@ import { DetailsComponent } from './details/details.component';
   declarations: [
     OverviewComponent,
     ListComponent,
-    DetailsComponent
+    DetailsComponent,
   ],
   imports: [
     CommonModule,

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ToastrService } from 'ngx-toastr';
-import { CartItem } from 'src/app/_models/cart-item';
-import { CartService } from 'src/app/_services/cart.service';
 import { PaginationService } from 'src/app/_services/pagination.service';
 import { ProductService } from 'src/app/_services/product.service';
-import { Product } from '../../_models/product';
-import { ProductQuery } from '../../_models/productQuery';
+import { Product } from 'src/app/_models/product';
+import { ProductQuery } from 'src/app/_models/productQuery';
 
 @Component({
   selector: 'app-overview',
@@ -21,13 +19,10 @@ export class OverviewComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private paginationService: PaginationService,
-    private toastr: ToastrService,
-    private cartService: CartService
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
-    this.paginationService.pageNumber = 1;
-    this.paginationService.pageSize = 30;
     this.getAllProduct();
   }
 
@@ -38,7 +33,7 @@ export class OverviewComponent implements OnInit {
 
   queryData(data: ProductQuery){
     this.productQuery = data;
-    this.paginationService.pageNumber = 1;
+    this.paginationService.pageNumber =1;
     this.getAllProduct();
   }
 
@@ -66,17 +61,5 @@ export class OverviewComponent implements OnInit {
           this.paginationService.hasNext = paginationHeader.hasNext
           this.paginationService.hasPrevious = paginationHeader.hasPrevious
     });
-  }
-
-  addCart(item: Product){
-    const cartItem: CartItem = {
-      productId: item.id,
-      productName: item.productName,
-      photoUrl: item.photoUrl,
-      price: item.price,
-      quantity: 1
-    };
-    
-    this.cartService.addItem(cartItem);
   }
 }

@@ -22,12 +22,13 @@
             
             <div>
                 <button mat-icon-button [matMenuTriggerFor]="cart">
-                    <mat-icon matBadge="15" matBadgeColor="warn">shopping_cart</mat-icon>
+                    <mat-icon *ngIf="!currentCart$" matBadgeColor="warn">shopping_cart</mat-icon>
+                    <mat-icon *ngIf="currentCart$" matBadge={{countCart}} matBadgeColor="warn">shopping_cart</mat-icon>
                 </button>
     
                 <mat-menu #cart="matMenu">
     
-                    <button mat-menu-item routerLink="/local-mall">
+                    <button mat-menu-item routerLink="cart">
                         <mat-icon>local_mall</mat-icon>
                         <span>Shop cart</span>
                     </button>

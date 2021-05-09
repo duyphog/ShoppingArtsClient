@@ -4,9 +4,9 @@ import { Product } from 'src/app/_models/product';
 import { PaginationService } from 'src/app/_services/pagination.service';
 import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogConfirmDeleteComponent } from '../dialog-confirm-delete/dialog-confirm-delete.component';
 import { FormBuilder } from '@angular/forms';
-import { ProductQuery } from '../../_models/productQuery'
-import { CartItem } from 'src/app/_models/cart-item';
+import { ProductQuery } from 'src/app/_models/productQuery'
 
 @Component({
   selector: 'app-list',
@@ -16,8 +16,7 @@ import { CartItem } from 'src/app/_models/cart-item';
 export class ListComponent{
   dataSource = new MatTableDataSource<Product>();
   displayedColumns: string[] = ['photo', 'id', 'productName', 'price', 'stock', 'warrantyPeriod', 'status', 'actions'];
-  products : Product[]
-
+  
   stockTypeQuery = [
     {"id" : -1, "value" : "="},
     {"id" : 0, "value" : "<="},
@@ -33,7 +32,6 @@ export class ListComponent{
 
   @Input('dataSource')
   set dataSourceForTable(value: Product[]) {
-    this.products = value;
     this.dataSource = new MatTableDataSource<Product>(value);
     this.dataSource.sort = this.sort;
   }
@@ -44,7 +42,6 @@ export class ListComponent{
   @Output() onDeleteProduct = new EventEmitter();
   @Output() onPageSwitch = new EventEmitter();
   @Output() onQueryData = new EventEmitter<ProductQuery>();
-  @Output() onAddCart = new EventEmitter<Product>();
 
   constructor(
       public pagitionService: PaginationService, 
@@ -57,6 +54,19 @@ export class ListComponent{
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  openDialog(product: Product): void {
+    const dialogRef = this.dialog.open(DialogConfirmDeleteComponent, {
+      width: '300px',
+      data: product
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.onDeleteProduct.emit(result);
+      }
+    });
+  }
+
   queryForm = this.formBuilder.group({
     productId: null,
     productName: null,
@@ -64,11 +74,6 @@ export class ListComponent{
     stockValue: null,
     statusType: "1"
   });
-
-  onPageChage(event: any){
-    window.scroll(0,0);
-    this.onPageSwitch.emit(event);
-  }
 
   submitQuery(){
     this.onQueryData.emit(this.queryForm.value);

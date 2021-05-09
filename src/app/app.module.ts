@@ -15,6 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './nav/nav.component';
 import { AccountService } from './_services/account.service';
 import { CategoryService } from './_services/category.service';
+import { CartService } from './_services/cart.service';
 import { GenderService } from './_services/gender.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
@@ -23,10 +24,13 @@ import { SigninComponent } from './account/signin/signin.component';
 import { ProductService } from './_services/product.service';
 import { PaginationService } from './_services/pagination.service';
 import { HttpBaseService } from './_services/http-base.service';
+import { AdminProductModule } from './admin/admin-product/admin-product.module';
 import { ProductModule } from './product/product.module';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error.component';
+import { CartComponent } from './cart/cart.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +40,8 @@ import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error
     RegisterComponent,
     SigninComponent,
     ServerErrorComponent,
-    NotFoundErrorComponent
+    NotFoundErrorComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,7 @@ import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error
     }),
     TabsModule.forRoot(),
     ProductModule,
+    AdminProductModule,
     NgHttpLoaderModule.forRoot()
   ],
   providers: [
@@ -64,6 +70,7 @@ import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error
     ProductService,
     PaginationService,
     CategoryService,
+    CartService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: DEFAULT_TIMEOUT, useValue: 10000 }

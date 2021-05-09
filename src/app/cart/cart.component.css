@@ -1,0 +1,59 @@
+td > img {
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    padding: 3px;
+    margin: 3px;
+    width: 100px;
+    height: auto;
+}
+
+.box {
+	position: relative;
+	top: 0;
+	opacity: 1;
+	float: left;
+	padding: 60px 50px 40px 50px;
+	width: 100%;
+	background: #fff;
+	border-radius: 10px;
+	transform: scale(1);
+	-webkit-transform: scale(1);
+	-ms-transform: scale(1);
+	z-index: 5;
+	max-width: 1000px;
+	min-width: 500px;
+}
+
+table {
+    width: 100%;
+}
+
+.ctn-number {
+    text-align: center;
+    width: 80px;
+}
+
+.btn-delete {
+    width: 50px;
+    padding-left: 10px;
+    text-align: center;
+}
+
+td > a {
+    color: black;
+}
+
+.ctn-quantity {
+    display: flex;
+    align-items:center
+}
+
+.mat-card-actions > button {
+    width: 30%;
+    align-items:center;
+    text-align: center;
+}
+
+tr.mat-footer-row {
+    font-weight: bold;
+}

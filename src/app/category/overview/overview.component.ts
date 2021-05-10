@@ -40,7 +40,7 @@ export class OverviewComponent implements OnInit {
 
   queryData(data: Category){
     this.category = data;
-    this.getAllCategory();
+    this.getAllCategory(); 
   }
   getAllCategory() {
     this.CategoryService.getList().subscribe(

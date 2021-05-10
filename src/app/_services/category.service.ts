@@ -22,7 +22,7 @@ export class CategoryService extends HttpBaseService {
   }
 
   
-  save(id: string, data: FormData, method: string) {
+  save(id: string, data: Category, method: string) {
     switch (method) {
       case "POST":
         return this.httpClient.post<Category>(this.url, data, { headers: this.headers });

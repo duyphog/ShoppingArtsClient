@@ -1,82 +1,88 @@
-.main-wrapper {
-	/* height: 800px; */
-	height: auto;
+.grid-container {
+	position: relative;
+	min-height: 200px;
 	width: 90%;
+	overflow: auto; 
 	margin: auto;
-}
-
-.mat-card {
-	min-width: 1000px;
-	height: 100%;
-}
-
-.mat-card-header {
+  }
+  
+  .grid-table-container {
+	position: relative;
+	height: 750px;
+	overflow: auto;
+  }
+  
+  table {
+	width: 100%;
+  }
+  
+  .grid-loading-shade {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 56px;
+	right: 0;
+	background: rgba(0, 0, 0, 0.15);
+	z-index: 10000;
+	display: flex;
+	align-items: center;
 	justify-content: center;
-	width: 100%;
-}
-
-.product-form {
-	min-width: 150px;
-	width: 100%;
-	height: 90%;
-}
-
-.field-full-width{
-	width: 100%;
-}
-
-.mat-grid-tile {
+  }
+  
+  .grid-rate-limit-reached {
+	color: #980000;
+	max-width: 360px;
+	text-align: center;
+  }
+  
+  
+  .mat-column-number,
+  .mat-column-state {
+	max-width: 64px;
+  }
+  
+  .mat-column-created {
+	max-width: 124px;
+  }
+  
+  td > img {
 	border-radius: 8px;
 	border: 1px solid #ddd;
-	width: 100%;
-}
-
-.grid-image {
-	width: 100%;
-	height: auto;
-	scroll-margin: inherit;
-}
-
-.uploadFile {
-	margin-top: 3px;
-}
-
-.mat-card-actions {
-	position: relative;
-	display: flex;
-	align-self: flex-end;
-	justify-content: center;
-
-}
-
-.mat-card-actions > button {
-	width: 120px;
-	align-self: flex-end;
-	margin: top 20px;;
-}
-
-.image-delete{
-	position: absolute;
-	top: 0;
-	right: 0;
 	padding: 5px;
-	line-height: 14px;
-	min-width: auto;
-}
-
-.image-default {
-	position: absolute;
-	left: 0;
-	top: 0;
-	line-height: 8px;
-	min-width: auto;
-}
-
-.image-set-main {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-	line-height: 8px;
-	min-width: auto;
-	color: #079992;
-}
+	margin: 5px;
+	width: 200px;
+	height: auto;
+  }
+  
+  .mat-column-photo {
+	width: 250px;
+  }
+  
+  .field-filter{
+	width: 100%;
+	padding-left: 50px;
+	/* padding-right: 50px; */
+	padding-top: 10px;
+  }
+  
+  .field-filter .mat-form-field {
+	font-size: 14px;
+	width: 100%;
+  }
+  
+  .mat-column-select {
+	overflow: initial;
+  }
+  
+  th.mat-header-cell {
+	text-align: left;
+	max-width: 200px;
+  }
+  
+  .btn-add {
+	width: 50px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 10px;
+  }
+  

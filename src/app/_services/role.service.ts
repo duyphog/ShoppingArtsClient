@@ -5,7 +5,7 @@ import { HttpBaseService } from '../_services/http-base.service';
   providedIn: 'root'
 })
 export class RoleService extends HttpBaseService{
-  private urlPatch = "role";
+  private urlPatch = "apputils/app-roles";
   private url = this.endpoint + this.urlPatch;
   
 

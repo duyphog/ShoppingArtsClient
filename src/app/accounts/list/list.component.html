@@ -4,16 +4,25 @@
 
             <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
                 <mat-tab label="Filter">
-                    <mat-form-field class="field-filter" appearance="legacy">
-                        <mat-label>Filter</mat-label>
-                        <input matInput (keyup)="applyFilter($event)" placeholder="Any seach..." #input>
-                        <mat-icon matSuffix>search</mat-icon>
-                    </mat-form-field>
+                    <td class="field-filter">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Filter</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Any seach..." #input>
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </td>
+                    <td class="btn-add">
+                        <a routerLink="/account/details">
+                            <button mat-stroked-button> 
+                                <mat-icon>add_circle_outline</mat-icon> New
+                            </button>
+                        </a>
+                    </td>
                 </mat-tab>
                 <mat-tab label="Query">
                     <mat-accordion>
                         <mat-expansion-panel [expanded]="true">
-                            <mat-expansion-panel-header>
+                            <mat-expansion-panel-header> 
                                 Query on database
                             </mat-expansion-panel-header>
                             <form [formGroup]="queryForm">

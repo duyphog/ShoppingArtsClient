@@ -6,10 +6,10 @@ export class Account {
     email: string;
     dateOfBirth: string;
     gender: number;
-    status: string;
+    status: boolean;
     lastActive: string;
-    createDate: string;
-    modifyDate: string;
+    createDate: Date;
+    modifyDate: Date;
     version: number;
     createBy: string;
     modifyBy: string;

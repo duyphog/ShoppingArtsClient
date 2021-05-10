@@ -17,7 +17,6 @@ import { AccountService } from './_services/account.service';
 import { CategoryService } from './_services/category.service';
 import { GenderService } from './_services/gender.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
 import { ProductService } from './_services/product.service';
@@ -31,7 +30,7 @@ import { from } from 'rxjs';
 import { AccountsModule } from './accounts/accounts.module';
 import { AccountsService } from './_services/accounts.service';
 import { RoleService } from './_services/role.service';
-
+import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error.component';
 
@@ -78,7 +77,7 @@ import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error
     CategoryService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    // { provide: DEFAULT_TIMEOUT, useValue: 10000 }
+    { provide: DEFAULT_TIMEOUT, useValue: 10000 }
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]

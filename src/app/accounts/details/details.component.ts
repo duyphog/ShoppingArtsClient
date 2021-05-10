@@ -8,14 +8,6 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { Role } from 'src/app/_models/role';
 import { Account } from '../../_models/account';
 import { RoleService } from '../../_services/role.service';
-export class InfoAccount{
-  id: string;
-  role: Role[];
-  createBy: string;
-  createDate: Date;
-  modifyBy: string;
-  modifyDate: Date;
-}
 
 
 @Component({
@@ -24,13 +16,7 @@ export class InfoAccount{
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  
-  role = [
-    {"id" : -1, "value" : "Member"},
-    {"id" : 0, "value" : "Staff"},
-    {"id" : 1, "value" : "Admin"},
-  ]
-  infoEntity = new InfoAccount;
+  role: Role[];
 
   urlSelect: Array<string> = [];
 
@@ -40,8 +26,13 @@ export class DetailsComponent implements OnInit {
     'email': [null, Validators.required],
     'dateOfBirth': [null, Validators.required],
     'gender': null,
-    'version': null,
     'status': true,
+    'createDate' : null,
+    'version': null,    
+    'createBy': null,
+    'modifyBy' : null,
+    'modifyDate': null,
+    'roleId': null,
   },
     
   );
@@ -54,7 +45,7 @@ export class DetailsComponent implements OnInit {
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
     private dialog: MatDialog 
-  ) { } 
+  ) { }  
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -62,32 +53,32 @@ export class DetailsComponent implements OnInit {
       this.accountsService
         .getSingle(id)
         .subscribe((account: Account) => {
-          this.infoEntity = {
-            id: account.id,
-            role: account.role,
-            createBy : account.createBy,
-            createDate : new Date(account.createDate),
-            modifyBy : account.modifyBy,
-            modifyDate : new Date(account.modifyDate)
-          }
-
-          this.formDetail.setValue({
+            this.formDetail.setValue({
             id: account.id,
             userName: account.userName,
             email: account.email,
             dateOfBirth: account.dateOfBirth,
-            gender: account.gender,
-            version: account.version ?? null,
-            status: account.status ?? null
+            gender: account.gender,            
+            status: account.status ?? null,
+            createDate: account.createDate,
+            version: account.version ?? null,            
+            createBy: account.createBy,
+            modifyBy: account.modifyBy,
+            modifyDate: account.modifyDate,
+            role: account.role,
           });
-          // this.formDetail.controls["categoryId"].disable();
         });
+        
+        this.roleService.getList().subscribe(
+          (result: any) => {
+            this.role = result.body;
+          });
     }
 
-    // this.roleService.getList().subscribe(
-    //   (result: any) => {
-    //     this.role = result.body;
-    //   });
+    this.roleService.getList().subscribe(
+      (result: any) => {
+        this.role = result.body;
+      });
   }
 
   save() {
@@ -97,25 +88,17 @@ export class DetailsComponent implements OnInit {
     }
 
     let formData = new FormData();
-    const data = this.formDetail.value;
-    Object.keys(data).forEach(key => {
-      formData.append(key, data[key]);
-    });
+    const data : Account = this.formDetail.value;
+    
 
-    // if (this.filesToUpload.length > 0) {
-    //   for (let file of this.filesToUpload) {
-    //     formData.append('files', file, file.name);
-    //   }
-    // }
-
-    const method = this.infoEntity.id == undefined ? 'POST' : 'PUT';
-    const productId = this.infoEntity.id == undefined ? null : this.infoEntity.id;
-    // this.productService.save(productId, formData, method).subscribe(
-    //   () => {
-    //     this.toastr.success(`${this.infoEntity.id ? "Create" : "Update"} success`);
-    //     this.router.navigateByUrl("product");
-    //   }
-    // );
+    const method = data.id == undefined ? 'POST' : 'PUT';
+    const accountId = this.formDetail.controls["id"] == undefined ? null : this.formDetail.controls["id"].value;
+    this.accountsService.save(accountId, data, method).subscribe(
+      () => {
+        this.toastr.success(`${this.formDetail.controls["id"] ? "Create" : "Update"} success`);
+        this.router.navigateByUrl("account");
+      }
+    );
   }
 
   
@@ -128,25 +111,5 @@ export class DetailsComponent implements OnInit {
 
 
   
-  openDialogPhotoDelete(): void {
-    // const dialogRef = this.dialog.open(DialogConfirmDeletePhotoComponent, {
-    //   width: '300px',
-    //   data: {
-    //     type: 0,
-    //     data: photo
-    //   }
-    // });
-
-    // dialogRef.afterClosed().subscribe((result: Photo) => {
-    //   if (result) {
-    //     this.productService.deletePhoto(photo.id).subscribe(
-    //       () => {
-    //         this.toastr.success("Success", "Delete Photo");
-    //         this.infoEntity.photos = this.infoEntity.photos.filter(x => x.id != result.id);
-    //       }
-    //     );
-    //   }
-    // });
-  }
 
 }

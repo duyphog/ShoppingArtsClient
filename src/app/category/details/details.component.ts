@@ -14,8 +14,8 @@ import { Category } from '../../_models/category';
 export class DetailsComponent implements OnInit {
   categories: Category[];
   public title = "Add Product";
-  isCreate: boolean = true;
-
+  isCreate: boolean = true; 
+ 
   formDetail = this.formBuilder.group({
     'id': null,
     'name': [null, Validators.required],
@@ -61,17 +61,12 @@ export class DetailsComponent implements OnInit {
       this.toastr.warning("Invalid form");
       return;
     }
-
-    let formData = new FormData();
-    const data = this.formDetail.value;
-    Object.keys(data).forEach(key => {
-      formData.append(key, data[key]);
-    });
-
-
-    const method = this.formDetail.controls["id"] == undefined ? 'POST' : 'PUT';
+ 
+    const data: Category = this.formDetail.value;
+  
+    const method = data.id == null ? 'POST' : 'PUT';
     const categoryId = this.formDetail.controls["id"] == undefined ? null : this.formDetail.controls["id"].value;
-    this.categoryService.save(categoryId, formData, method).subscribe(
+    this.categoryService.save(categoryId, data, method).subscribe(
       () => {
         this.toastr.success(`${this.formDetail.controls["id"] ? "Create" : "Update"} success`);
         this.router.navigateByUrl("category");
@@ -80,10 +75,8 @@ export class DetailsComponent implements OnInit {
   }
 
   deleteSelected(index: number) {
-    // if (index == -1)
-    //   return;
-    // this.urlSelect.splice(index, 1);
-    // this.filesToUpload.splice(index, 1);
+    if (index == -1)
+      return;
   }
 
  

@@ -4,11 +4,20 @@
 
             <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
                 <mat-tab label="Filter">
-                    <mat-form-field class="field-filter" appearance="legacy">
-                        <mat-label>Filter</mat-label>
-                        <input matInput (keyup)="applyFilter($event)" placeholder="Any seach..." #input>
-                        <mat-icon matSuffix>search</mat-icon>
-                    </mat-form-field>
+                    <td class="field-filter">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Filter</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Any seach..." #input>
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </td>
+                    <td class="btn-add">
+                        <a routerLink="/category/details">
+                            <button mat-stroked-button> 
+                                <mat-icon>add_circle_outline</mat-icon> New
+                            </button>
+                        </a>
+                    </td>
                 </mat-tab>
                 <mat-tab label="Query">
                     <mat-accordion>
@@ -129,12 +138,6 @@
             </table>
         </div>
 
-        <mat-paginator showFirstLastButtons
-            [length]="pagitionService.totalItems"
-            [pageSize]="pagitionService.pageSize"
-            [pageIndex]="pagitionService.pageNumber-1" 
-            [pageSizeOptions]="pagitionService.selectItemsPerPage"
-            (page)="onPageSwitch.emit($event)">
-        </mat-paginator>
+       
     </div>
 </div>

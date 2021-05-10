@@ -4,13 +4,16 @@ import { from } from 'rxjs';
 import { AccountsService } from 'src/app/_services/accounts.service';
 import { PaginationService } from 'src/app/_services/pagination.service';
 import { Account } from '../../_models/account'
+import { Observable } from 'rxjs';
 
+import { User } from '../../_models/user';
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
 export class OverviewComponent implements OnInit {
+  currentUser$: Observable<User>
   dataSource: Account[];
   private accountQuery = new Account;
   constructor(
@@ -46,14 +49,14 @@ export class OverviewComponent implements OnInit {
           this.paginationService.hasPrevious = paginationHeader.hasPrevious
     });
   }
-  delete(acount: Account) {
-    // this.productService.delete(product.id).subscribe(
-    //   () => {
-    //     let index = this.dataSource.indexOf(product);
-    //     product.status = false;
-    //     this.dataSource[index] = product;
-    //   }
-    // )
+  delete(account: Account) {
+    this.accountsService.delete(account.id).subscribe(
+      () => {
+        let index = this.dataSource.indexOf(account);
+        account.status = false;
+        this.dataSource[index] = account;
+      }
+    )
   }
 
 

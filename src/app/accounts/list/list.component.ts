@@ -5,6 +5,10 @@ import { MatSort } from '@angular/material/sort';
 import { PaginationService } from 'src/app/_services/pagination.service';
 import { MatDialog } from '@angular/material/dialog';
 import { FormBuilder } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { DialogConfirmDeleteComponent } from '../dialog-confirm-delete/dialog-confirm-delete.component';
+
+import { User } from '../../_models/user';
 
 @Component({
   selector: 'app-list',
@@ -12,6 +16,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent {
+  currentUser$: Observable<User>
   dataSource = new MatTableDataSource<Account>();
   displayedColumns: string[] = ['userName', 'email', 'dateOfBirth', 'gender', 'status', 'actions'];
   stockTypeQuery = [
@@ -50,16 +55,16 @@ export class ListComponent {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   openDialog(account: Account): void {
-    // const dialogRef = this.dialog.open(DialogConfirmDeleteComponent, {
-    //   width: '300px',
-    //   data: product
-    // });
+    const dialogRef = this.dialog.open(DialogConfirmDeleteComponent, {
+      width: '300px',
+      data: account
+    });
 
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if(result){
-    //     this.onDeleteProduct.emit(result);
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.onDeleteProduct.emit(result);
+      }
+    });
   }
   queryForm = this.formBuilder.group({
     productId: null,

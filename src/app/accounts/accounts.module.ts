@@ -28,6 +28,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { from } from 'rxjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
+import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { DetailsComponent } from './details/details.component';
     OverviewComponent,
     ListComponent,
     DetailsComponent,
+    DialogConfirmDeleteComponent,
   ],
   imports: [
     CommonModule,

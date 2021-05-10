@@ -3,6 +3,14 @@ import { Injectable } from '@angular/core';
 import { HttpBaseService } from '../_services/http-base.service';
 import { Observable } from 'rxjs';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Account } from '../_models/account';
+const httpOptions = {
+  headers: new HttpHeaders({
+    Authorization: 'Bearer ' + JSON.parse(localStorage.getItem('user'))?.token
+  })
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -10,7 +18,9 @@ import { Observable } from 'rxjs';
 export class AccountsService extends HttpBaseService{
   
   private urlPatch = "account";
+  private urlPatchAdmin = "admin/AccountManager";
   private url = this.endpoint + this.urlPatch;
+  private urlAdmin = this.endpoint + this.urlPatchAdmin;
   
   getList(){
     return this.httpClient.get(this.url, { observe: 'response' });
@@ -43,11 +53,27 @@ export class AccountsService extends HttpBaseService{
 
   //   const mergedUrl = this.endpoint + this.urlPatch;
   //   return this.httpClient.get(mergedUrl, { params, observe: 'response' });
-  // }
+  // } 
 
   getSingle(id: string) {
     const mergedUrl = `${this.url}/${id}`;
     return this.httpClient.get(mergedUrl);
+  }
+
+  save(id: string, data: Account, method: string) {
+    switch (method) {
+      case "POST":
+        return this.httpClient.post<Account>(this.urlAdmin, data, { headers: this.headers });
+      case "PUT":
+        return this.httpClient.put<Account>(`${this.urlAdmin}/${id}`, data, { headers: this.headers });
+      default:
+        console.log(`${method} not found!!!`);
+        break;
+    }
+  }
+  delete(id: string) {
+    const mergedUrl = `${this.urlAdmin}/${id}`;
+    return this.httpClient.delete(mergedUrl);
   }
 
 }

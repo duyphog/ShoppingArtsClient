@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { User } from '../_models/user';
+import { CartService } from '../_services/cart.service';
+import { CartItem } from '../_models/cart-item';
 
 @Component({
   selector: 'app-nav',
@@ -11,14 +13,24 @@ import { User } from '../_models/user';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit {
-  model: any = {}
-  currentUser$: Observable<User>
- 
-  constructor(public accountService: AccountService, private router: Router, 
-    private toastr: ToastrService) { }
+  model: any = {};
+  currentUser$: Observable<User>;
+  currentCart$: Observable<CartItem[]>;
+  countCart = 0;
+
+  constructor(
+    public accountService: AccountService, 
+    private carService: CartService,
+    private router: Router, 
+    private toastr: ToastrService
+    ) { }
   
   ngOnInit(): void {
     this.currentUser$ = this.accountService.currentUser$; 
+    this.currentCart$ = this.carService.currentCart$;
+    this.carService.currentCart$.subscribe(x => {
+      this.countCart = x == null ? null : x.length;
+    }); 
   }
 
   logout() {

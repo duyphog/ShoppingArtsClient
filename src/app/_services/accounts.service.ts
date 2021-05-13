@@ -75,5 +75,18 @@ export class AccountsService extends HttpBaseService{
     const mergedUrl = `${this.urlAdmin}/${id}`;
     return this.httpClient.delete(mergedUrl);
   }
+  
+  getProfile(id: string){
+    const mergedUrl = `${this.url}/${id}`;
+    return this.httpClient.get(mergedUrl);
+  }
+
+  getCurrentAccount() {
+    let accounts: Account[] = JSON.parse(localStorage.getItem('carts'));
+    if (accounts == null) {
+      accounts = new Array<Account>()
+    }
+    return accounts;
+  }
 
 }

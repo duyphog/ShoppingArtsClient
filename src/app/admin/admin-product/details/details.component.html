@@ -1,0 +1,159 @@
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+  
+      <mat-card-header>
+        <mat-card-title>{{infoEntity.id ? "Edit Product" : "Add Product"}} <mat-icon color="primary">{{infoEntity.id ? "edit" : "add_circle"}}</mat-icon>
+        </mat-card-title>
+        <mat-card-subtitle *ngIf="infoEntity.id">ID: {{infoEntity.id}}</mat-card-subtitle>
+      </mat-card-header>
+  
+      <form class="product-form" [formGroup]="formDetail" (ngSubmit)="save()">
+  
+        <mat-card-content>
+          <table class="field-full-width">
+  
+            <tr>
+              <td colspan="2">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="productName" placeholder="Product Name">
+                  <mat-error *ngIf="formDetail.controls['productName'].invalid">Product Name is required</mat-error>
+                </mat-form-field>
+              </td>
+              <td colspan="2">
+                <mat-form-field class="field-full-width">
+                  <mat-label>Category</mat-label>
+                  <mat-select formControlName="categoryId" name="categoryId">
+                    <mat-option *ngFor="let item of categories" [value]="item.id">{{item.name}}</mat-option>
+                  </mat-select>
+                  <mat-error *ngIf="formDetail.controls['categoryId'].invalid">Category is required</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+  
+            <tr>
+              <td colspan="4">
+                <mat-form-field class="field-full-width">
+                  <textarea matInput formControlName="shortDescription" placeholder="Short Description"></textarea>
+                  <mat-error *ngIf="formDetail.controls['shortDescription'].invalid">Short Description is required</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+  
+            <tr>
+              <td colspan="4">
+                <mat-form-field class="field-full-width">
+                  <textarea rows="4" matInput formControlName="longDescription" placeholder="Long Description"></textarea>
+                </mat-form-field>
+              </td>
+            </tr>
+  
+            <tr>
+              <td colspan="2">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="origin" placeholder="Origin">
+                </mat-form-field>
+              </td>
+  
+              <td>
+                <mat-form-field class="field-full-width">
+                  <input matInput type="number" formControlName="stock" placeholder="Stock">
+                </mat-form-field>
+              </td>
+  
+              <td>
+                <section>
+                  <mat-checkbox formControlName="unlimited" name="unlimited">Unlimited</mat-checkbox>
+                </section>
+              </td>
+            </tr>
+  
+            <tr>
+              <td>
+                <mat-form-field class="field-full-width">
+                  <input matInput type="number" min=0 formControlName="price" placeholder="Price">
+                  <span matPrefix>$&nbsp;</span>
+                  <mat-error *ngIf="formDetail.controls['shortDescription'].invalid">Price is required</mat-error>
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="field-full-width">
+                  <input matInput type="number" formControlName="warrantyPeriod" placeholder="WarrantyPeriod">
+                </mat-form-field>
+              </td>
+              <td>
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="location" placeholder="Location">
+                </mat-form-field>
+              </td>
+              <td>
+                <section class="field-full-width" *ngIf="infoEntity.id">
+                  <mat-checkbox formControlName="status" name="status">Status</mat-checkbox>
+                </section>
+              </td>
+            </tr>
+  
+            <tr *ngIf="infoEntity.id">
+              <td>
+                CreateBy: {{infoEntity.createBy}}
+              </td>
+              <td>
+                CreateDate: {{infoEntity.createDate | date:'dd/MM/yyyy h:mm a z'}}
+              </td>
+              <td>
+                ModifyBy: {{infoEntity.modifyBy}}
+              </td>
+              <td>
+                ModifyDate: {{infoEntity.modifyDate | date:'dd/MM/yyyy h:mm a z'}}
+              </td>
+            </tr>
+            <mat-divider></mat-divider>
+  
+            <tr>
+              <td colspan="2" *ngIf="infoEntity.photos">
+                  <b> <mat-icon>photo_library</mat-icon> Current Photos</b>
+                  <mat-grid-list cols="5">
+                    <mat-grid-tile *ngFor="let item of infoEntity.photos">
+                      <img class="grid-image" src={{item.url}}>
+                      <button class="image-delete" type="button" mat-icon-button color="warn" *ngIf="!item.isMain" (click)="openDialogPhotoDelete(item)" matTooltip="Delete photo from server">
+                        <mat-icon>highlight_off</mat-icon>
+                      </button>
+                      <button class="image-default" type="button" mat-icon-button color="primary" *ngIf="item.isMain" matTooltip="Photo is main">
+                        <mat-icon>visibility</mat-icon>
+                      </button>
+                      <button class="image-set-main" type="button" mat-icon-button *ngIf="!item.isMain" (click)="openDialogIsMain(item)" matTooltip="Set photo is main">
+                        <mat-icon>settings</mat-icon>
+                      </button>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+              </td>
+              
+              <td colspan="2">
+                  <p> <mat-icon>add_photo_alternate</mat-icon> New Upload Photos</p>
+                  <mat-grid-list cols="5">
+                    <mat-grid-tile *ngFor="let item of urlSelect;let indexOfelement=index;">
+                      <img class="grid-image" src={{item}}>
+                      <button class="image-delete" type="button" mat-icon-button color="warn" (click)="deleteSelected(indexOfelement)">
+                        <mat-icon>highlight_off</mat-icon>
+                      </button>
+                    </mat-grid-tile>
+                  </mat-grid-list>
+  
+                  <input class="uploadFile" type="file" id="uploadFile" (change)="uploadFileEvt($event)"
+                  name="uploadFile" multiple="multiple" accept="image/*" />
+              </td>
+            </tr>
+          </table>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary" type="submit">
+            <mat-icon>save</mat-icon> Save
+          </button>
+          <button mat-stroked-button color="warn" type="button" [routerLink]="['/admin/product']">
+            <mat-icon>cancel</mat-icon> Cancel
+          </button>
+        </mat-card-actions>
+  
+      </form>
+    </mat-card>
+  </div>

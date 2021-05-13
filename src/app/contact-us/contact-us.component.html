@@ -1,0 +1,111 @@
+<!-- <agm-map [latitude]="latitude" [longitude]="longitude" style="height: 300px" (mapClick)="placeMarker($event)">
+    <agm-marker (mouseOver)="window.open()" (mouseOut)="window.close()" *ngFor="let marker of markers" [latitude]="marker.latitude"
+      [longitude]="marker.longitude">
+      <agm-info-window #window>
+        <h6>Longitude: {{marker.longitude}}</h6>
+        <h6>Latitude: {{marker.latitude}}</h6>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map> -->
+
+
+
+  <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+  
+      <mat-card-header>
+        <mat-card-title>Contact Us</mat-card-title>        
+      </mat-card-header>
+      <hr>
+  
+      <form class="product-form" [formGroup]="formDetail" (ngSubmit)="save()">
+  
+        <mat-card-content>
+          <table class="field-full-width">
+            <tr >
+              <td colspan="2" >
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="name" placeholder=" Name">
+                  <mat-error *ngIf="formDetail.controls['name'].invalid">User Name is required</mat-error>
+                </mat-form-field>
+              </td>
+              <td colspan="2" >
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="phoneNumber" placeholder="Phone Number ">
+                  <mat-error *ngIf="formDetail.controls['phoneNumber'].invalid">User Name is required</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="email" placeholder="Email">
+                  <mat-error *ngIf="formDetail.controls['email'].invalid">Email is required</mat-error>
+                </mat-form-field>
+              </td>
+              <td colspan="2">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="subject" placeholder="Subject">
+                  <mat-error *ngIf="formDetail.controls['subject'].invalid">Subject is required</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+  
+            <tr>
+              <td colspan="2">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="confirm" placeholder="confirm">
+                  <mat-error *ngIf="formDetail.controls['confirm'].invalid">Confirm is required</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="description" placeholder="description">
+                  <mat-error *ngIf="formDetail.controls['description'].invalid">Confirm is required</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr *ngIf="formDetail.controls['id']">
+              <!-- <td colspan="1">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="createBy" placeholder="CreateBy" style="display:block" >
+                  <mat-error *ngIf="formDetail.controls['createBy'].invalid">User Name is required</mat-error>
+                </mat-form-field>
+              </td>
+              <td colspan="1">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="createDate" placeholder="CreateDate" style="display:block" >
+                  <mat-error *ngIf="formDetail.controls['createDate'].invalid">User Name is required</mat-error>
+                </mat-form-field>
+              </td>
+              <td colspan="1">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="modifyBy" placeholder="ModifyBy" style="display:block" >
+                  <mat-error *ngIf="formDetail.controls['modifyBy'].invalid">User Name is required</mat-error>
+                </mat-form-field>
+              </td>
+              <td colspan="1">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="modifyDate" placeholder="Modify Date" style="display:block" >
+                  <mat-error *ngIf="formDetail.controls['modifyDate'].invalid">User Name is required</mat-error>
+                </mat-form-field>
+              </td> -->
+            </tr>
+  
+          </table>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary" type="submit">
+            <mat-icon>Send</mat-icon> Save
+          </button>
+          <button mat-stroked-button color="warn" type="button" [routerLink]="['/account']">
+            <mat-icon>cancel</mat-icon> Cancel
+          </button>
+        </mat-card-actions>
+  
+      </form>
+    </mat-card>
+  </div>

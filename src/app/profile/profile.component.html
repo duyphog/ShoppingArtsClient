@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+        <mat-card-header>
+            <mat-card-title>Profile</mat-card-title>
+        </mat-card-header>
+    </div>
+    <!-- *ngIf="(currentUser$ | async) as user" -->
+    <mat-grid-list cols="5">
+        <mat-grid-tile>
+            <h1>{{currentUser$}}</h1>
+            Not Null
+        </mat-grid-tile>
+    </mat-grid-list>
+    <div class="row">
+        <div class="col-4">
+            <div class="tm-block-col tm-col-avatar">
+                <div class="tm-bg-primary-dark tm-block tm-block-avatar">
+                    <h2 class="tm-block-title">Change Avatar</h2>
+                    <div class="tm-avatar-container">
+                        <img src="../../assets/photos/no-product-image.png" alt="Avatar"
+                            class="tm-avatar img-fluid mb-4" />
+                        <a href="#" class="tm-avatar-delete-link">
+                            <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                        </a>
+                    </div>
+                    <button class="btn btn-primary btn-block text-uppercase">
+                        Upload New Photo
+                    </button>
+                    <button class="btn btn-primary btn-block text-uppercase">
+                        View Invoice
+                    </button>
+                    <button class="btn btn-primary btn-block text-uppercase">
+                        Edit Account
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-8">
+            <mat-card class="box">
+                <form class="product-form" [formGroup]="formDetail">
+                    <mat-card-content>
+                        <table class="field-full-width">
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <input matInput formControlName="userName" placeholder="User Name">
+                                        <mat-error *ngIf="formDetail.controls['userName'].invalid">User Name is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <input matInput formControlName="email" placeholder="Email">
+                                        <mat-error *ngIf="formDetail.controls['email'].invalid">Email is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <input matInput formControlName="gender" placeholder="Gender">
+                                        <mat-error *ngIf="formDetail.controls['gender'].invalid">Gender is required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <mat-form-field class="field-full-width">
+                                        <input matInput formControlName="dateOfBirth" placeholder="Date Of Birth">
+                                        <mat-error *ngIf="formDetail.controls['dateOfBirth'].invalid">Date Of Birth is
+                                            required</mat-error>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-card-content>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

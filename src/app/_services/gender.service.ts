@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class GenderService {
   private baseUrl = environment.endpoint;
-  private urlGender = this.baseUrl + "account/genders";
+  private urlGender = this.baseUrl + "apputils/genders";
 
   private currentUserSource = new ReplaySubject<Gender>(1);
   currentUser$ = this.currentUserSource.asObservable();

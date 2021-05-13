@@ -1,112 +1,112 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="box">
-  
-      <mat-card-header>
-        <mat-card-title>{{formDetail.controls["id"] ?  "Edit Account" : "Add Account"}} <mat-icon color="primary">{{formDetail.controls["id"]? "edit" : "add_circle"}}</mat-icon>
-        </mat-card-title>        
-      </mat-card-header>
-      <hr>
-  
-      <form class="product-form" [formGroup]="formDetail" (ngSubmit)="save()">
-  
-        <mat-card-content>
-          <table class="field-full-width">
-            <tr >
-              <td colspan="4" *ngIf="formDetail.controls['id'].value != undefined">
-                <mat-form-field class="field-full-width">
-                  <input matInput formControlName="userName" placeholder="User Name">
-                  <mat-error *ngIf="formDetail.controls['userName'].invalid">User Name is required</mat-error>
-                </mat-form-field>
-              </td>              
-              <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined">
-                <mat-form-field class="field-full-width">
-                  <input matInput formControlName="userName" placeholder="User Name">
-                  <mat-error *ngIf="formDetail.controls['userName'].invalid">User Name is required</mat-error>
-                </mat-form-field>
-              </td>
-              <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined" >
-                <mat-form-field class="field-full-width"  >
-                  <mat-label>Create Role</mat-label>
-                  <mat-select formControlName="userName" name="role">
-                    <mat-option *ngFor="let item of role" [value]="item.id">{{item.name}}</mat-option>
-                  </mat-select>
-                  <mat-error >Category is required</mat-error>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td colspan="2">
-                <mat-form-field class="field-full-width">
-                  <input matInput formControlName="email" placeholder="Email">
-                  <mat-error *ngIf="formDetail.controls['email'].invalid">Email is required</mat-error>
-                </mat-form-field>
-              </td>
-              <td colspan="2">
-                <mat-form-field class="field-full-width">
-                  <input matInput formControlName="gender" placeholder="Gender">
-                  <mat-error *ngIf="formDetail.controls['gender'].invalid">Gender is required</mat-error>
-                </mat-form-field>
-              </td>
-            </tr>
+  <mat-card class="box">
 
-            <tr>
-              <td colspan="2">
-                <mat-form-field class="field-full-width">
-                  <input matInput formControlName="dateOfBirth" placeholder="dateOfBirth">
-                  <mat-error *ngIf="formDetail.controls['dateOfBirth'].invalid">Date Of Birth is required</mat-error>
-                </mat-form-field>
-              </td>
-              <td colspan="1">
-             
-              </td>
-              <td colspan="1">
-                <section class="field-full-width" *ngIf="formDetail.controls['id']">
-                  <mat-checkbox formControlName="status" name="status">Status</mat-checkbox>
-                </section>
-              </td>
-            </tr>
-            <tr *ngIf="formDetail.controls['id']">
-              <td colspan="1">
-                <mat-form-field class="field-full-width">
-                  <input matInput formControlName="createBy" placeholder="CreateBy" style="display:block" >
-                  <mat-error *ngIf="formDetail.controls['createBy'].invalid">User Name is required</mat-error>
-                </mat-form-field>
-              </td>
-              <td colspan="1">
-                <mat-form-field class="field-full-width">
-                  <input matInput formControlName="createDate" placeholder="CreateDate" style="display:block" >
-                  <mat-error *ngIf="formDetail.controls['createDate'].invalid">User Name is required</mat-error>
-                </mat-form-field>
-              </td>
-              <td colspan="1">
-                <mat-form-field class="field-full-width">
-                  <input matInput formControlName="modifyBy" placeholder="ModifyBy" style="display:block" >
-                  <mat-error *ngIf="formDetail.controls['modifyBy'].invalid">User Name is required</mat-error>
-                </mat-form-field>
-              </td>
-              <td colspan="1">
-                <mat-form-field class="field-full-width">
-                  <input matInput formControlName="modifyDate" placeholder="Modify Date" style="display:block" >
-                  <mat-error *ngIf="formDetail.controls['modifyDate'].invalid">User Name is required</mat-error>
-                </mat-form-field>
-              </td>
-              
-             
-              
-            </tr>
-  
-          </table>
-        </mat-card-content>
-        <mat-divider></mat-divider>
-        <mat-card-actions>
-          <button mat-stroked-button color="primary" type="submit">
-            <mat-icon>save</mat-icon> Save
-          </button>
-          <button mat-stroked-button color="warn" type="button" [routerLink]="['/account']">
-            <mat-icon>cancel</mat-icon> Cancel
-          </button>
-        </mat-card-actions>
-  
-      </form>
-    </mat-card>
-  </div>
+    <mat-card-header>
+      <mat-card-title>{{formDetail.controls["id"] ?  "Edit Account" : "Add Account"}} <mat-icon color="primary">{{formDetail.controls["id"]? "edit" : "add_circle"}}</mat-icon>
+      </mat-card-title>        
+    </mat-card-header>
+    <hr>
+
+    <form class="product-form" [formGroup]="formDetail" (ngSubmit)="save()">
+
+      <mat-card-content>
+        <table class="field-full-width">
+          <tr >
+            <td colspan="4" *ngIf="formDetail.controls['id'].value != undefined">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="userName" placeholder="User Name">
+                <mat-error *ngIf="formDetail.controls['userName'].invalid">User Name is required</mat-error>
+              </mat-form-field>
+            </td>              
+            <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="userName" placeholder="User Name">
+                <mat-error *ngIf="formDetail.controls['userName'].invalid">User Name is required</mat-error>
+              </mat-form-field>
+            </td>
+            <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined" >
+              <mat-form-field class="field-full-width"  >
+                <mat-label>Create Role</mat-label>
+                <mat-select formControlName="userName" name="role">
+                  <mat-option *ngFor="let item of role" [value]="item.id">{{item.name}}</mat-option>
+                </mat-select>
+                <mat-error >Category is required</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="email" placeholder="Email">
+                <mat-error *ngIf="formDetail.controls['email'].invalid">Email is required</mat-error>
+              </mat-form-field>
+            </td>
+            <td colspan="2">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="gender" placeholder="Gender">
+                <mat-error *ngIf="formDetail.controls['gender'].invalid">Gender is required</mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="dateOfBirth" placeholder="dateOfBirth">
+                <mat-error *ngIf="formDetail.controls['dateOfBirth'].invalid">Date Of Birth is required</mat-error>
+              </mat-form-field>
+            </td>
+            <td colspan="1">
+           
+            </td>
+            <td colspan="1">
+              <section class="field-full-width" *ngIf="formDetail.controls['id']">
+                <mat-checkbox formControlName="status" name="status">Status</mat-checkbox>
+              </section>
+            </td>
+          </tr>
+          <tr *ngIf="formDetail.controls['id']">
+            <td colspan="1">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="createBy" placeholder="CreateBy" style="display:block" >
+                <mat-error *ngIf="formDetail.controls['createBy'].invalid">User Name is required</mat-error>
+              </mat-form-field>
+            </td>
+            <td colspan="1">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="createDate" placeholder="CreateDate" style="display:block" >
+                <mat-error *ngIf="formDetail.controls['createDate'].invalid">User Name is required</mat-error>
+              </mat-form-field>
+            </td>
+            <td colspan="1">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="modifyBy" placeholder="ModifyBy" style="display:block" >
+                <mat-error *ngIf="formDetail.controls['modifyBy'].invalid">User Name is required</mat-error>
+              </mat-form-field>
+            </td>
+            <td colspan="1">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="modifyDate" placeholder="Modify Date" style="display:block" >
+                <mat-error *ngIf="formDetail.controls['modifyDate'].invalid">User Name is required</mat-error>
+              </mat-form-field>
+            </td>
+            
+           
+            
+          </tr>
+
+        </table>
+      </mat-card-content>
+      <mat-divider></mat-divider>
+      <mat-card-actions>
+        <button mat-stroked-button color="primary" type="submit">
+          <mat-icon>save</mat-icon> Save
+        </button>
+        <button mat-stroked-button color="warn" type="button" [routerLink]="['/account']">
+          <mat-icon>cancel</mat-icon> Cancel
+        </button>
+      </mat-card-actions>
+
+    </form>
+  </mat-card>
+</div>

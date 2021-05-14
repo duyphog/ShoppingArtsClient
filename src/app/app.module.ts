@@ -37,9 +37,12 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error.component';
 import { CartComponent } from './cart/cart.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
-import { ContactUsService } from './_services/contact-us.service' 
-
-
+import { ContactUsService } from './_services/contact-us.service';
+import { AdminReportModule } from './admin/admin-report/admin-report.module';
+import { from } from 'rxjs';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { AgmCoreModule } from '@agm/core';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,8 @@ import { ContactUsService } from './_services/contact-us.service'
     NotFoundErrorComponent,
     CartComponent,
     ProfileComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,11 @@ import { ContactUsService } from './_services/contact-us.service'
     CategoryModule,
     AccountsModule,
     AdminProductModule,
-    NgHttpLoaderModule.forRoot()
+    AdminReportModule,
+    NgHttpLoaderModule.forRoot(),
+    MatGoogleMapsAutocompleteModule,
+    AgmCoreModule.forRoot(),
+    
   ],
   providers: [
     HttpBaseService,

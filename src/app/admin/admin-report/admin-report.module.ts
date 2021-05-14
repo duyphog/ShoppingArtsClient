@@ -1,22 +1,22 @@
-import { ListComponent } from './list/list.component';
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { AdminReportRoutes } from './admin-report.routing'
+import { from } from 'rxjs';
+import { OverviewComponent } from './overview/overview.component';
+import { ListComponent } from './list/list.component';
+import { DetailsComponent } from './details/details.component';
+import { DialogComfirmDeleteComponent } from './dialog-comfirm-delete/dialog-comfirm-delete.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatSortModule } from '@angular/material/sort';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { AdminProductRoutes } from './admin-product.routing';
-import { DetailsComponent } from './details/details.component';
-import { OverviewComponent } from './overview/overview.component';
-import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
-import { DialogConfirmDeletePhotoComponent } from './dialog-confirm-delete-photo/dialog-confirm-delete-photo.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -29,17 +29,17 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatRadioModule} from '@angular/material/radio';
 
+
 @NgModule({
   declarations: [
-    ListComponent,
-    DetailsComponent,
     OverviewComponent,
-    DialogConfirmDeleteComponent,
-    DialogConfirmDeletePhotoComponent
+    ListComponent, 
+    DetailsComponent, 
+    DialogComfirmDeleteComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(AdminProductRoutes),
+    RouterModule.forChild(AdminReportRoutes),
     MatPaginatorModule,
     MatButtonModule,
     MatTableModule,
@@ -61,7 +61,6 @@ import { MatRadioModule} from '@angular/material/radio';
     MatExpansionModule,
     MatTabsModule,
     MatRadioModule
-  ],
-  exports: [],
+  ] 
 })
-export class AdminProductModule { }
+export class AdminReportModule { }

@@ -13,13 +13,30 @@ import { from } from 'rxjs';
 })
 export class ContactUsComponent implements OnInit {
 
+ 
+longitude = 20.728218;
+latitude = 52.128973;
+
+markers = [
+{ latitude: 52.228973, longitude: 20.728218 }
+];
+
+placeMarker(position: any) {
+const lat = position.coords.lat;
+const lng = position.coords.lng;
+
+this.markers.push({ latitude: lat, longitude: lng });
+}
+
+
   formDetail = this.formBuilder.group({
     'name': [null, Validators.required],
     'email': [null, Validators.required],
     'phoneNumber': [null, Validators.required],
     'subject': [null, Validators.required],
-    'confirm': null,
+    'confirm':[null, Validators.required],
     'description' : [null, Validators.required],
+    'status': true,
     
   })
 
@@ -28,7 +45,10 @@ export class ContactUsComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private formBuilder: FormBuilder,
-  ) { }
+   
+  ) { 
+   
+  }
 
   ngOnInit(): void {
   }
@@ -52,22 +72,6 @@ export class ContactUsComponent implements OnInit {
         this.router.navigateByUrl("account");
       }
     );
-  }
-
-
-
-  longitude = 20.728218;
-  latitude = 52.128973;
-
-  markers = [
-    { latitude: 52.228973, longitude: 20.728218 }
-  ];
-
-  placeMarker(position: any) {
-    const lat = position.coords.lat;
-    const lng = position.coords.lng;
-
-    this.markers.push({ latitude: lat, longitude: lng });
   }
 
 }

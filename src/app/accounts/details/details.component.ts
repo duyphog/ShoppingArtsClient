@@ -19,7 +19,7 @@ export class DetailsComponent implements OnInit {
   role: Role[];
 
   urlSelect: Array<string> = [];
-
+  
   formDetail = this.formBuilder.group({
     'id': null,
     'userName': [null, Validators.required],
@@ -82,14 +82,14 @@ export class DetailsComponent implements OnInit {
   }
 
   save() {
-    if (!this.formDetail.valid) {
-      this.toastr.warning("Invalid form");
-      return;
-    }
+    // if (!this.formDetail.valid) {
+    //   this.toastr.warning("Invalid form");
+    //   return;
+    // }
 
-    let formData = new FormData();
     const data : Account = this.formDetail.value;
-    
+    console.log(data);
+    return;
 
     const method = data.id == undefined ? 'POST' : 'PUT';
     const accountId = this.formDetail.controls["id"] == undefined ? null : this.formDetail.controls["id"].value;

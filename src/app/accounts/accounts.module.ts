@@ -29,7 +29,7 @@ import { from } from 'rxjs';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DetailsComponent } from './details/details.component';
 import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
-
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -61,7 +61,8 @@ import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-con
     BrowserAnimationsModule,
     MatExpansionModule,
     MatTabsModule,
-    MatRadioModule
+    MatRadioModule,
+    MatListModule
   ],
    exports: [],
 })

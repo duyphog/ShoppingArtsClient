@@ -24,14 +24,21 @@
                 <mat-error *ngIf="formDetail.controls['userName'].invalid">User Name is required</mat-error>
               </mat-form-field>
             </td>
-            <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined" >
-              <mat-form-field class="field-full-width"  >
+            <!-- <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined" > -->
+              <!-- <mat-form-field class="field-full-width"  >
                 <mat-label>Create Role</mat-label>
-                <mat-select formControlName="userName" name="role">
+                <mat-select formControlName="roleId" name="role">
                   <mat-option *ngFor="let item of role" [value]="item.id">{{item.name}}</mat-option>
                 </mat-select>
                 <mat-error >Category is required</mat-error>
-              </mat-form-field>
+              </mat-form-field>  -->
+            <td colspan="2">
+              <mat-selection-list formControlName="roleId" name="role">
+                <mat-list-option *ngFor="let item of role" [value]="item.id">
+                  {{item.name}}
+                </mat-list-option>
+              </mat-selection-list>
+
             </td>
           </tr>
           <tr>

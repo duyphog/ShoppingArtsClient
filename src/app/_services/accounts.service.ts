@@ -19,8 +19,10 @@ export class AccountsService extends HttpBaseService{
   
   private urlPatch = "account";
   private urlPatchAdmin = "admin/AccountManager";
+  private urlPatchProfile = "account/profile";
   private url = this.endpoint + this.urlPatch;
   private urlAdmin = this.endpoint + this.urlPatchAdmin;
+  private urlProfile = this.endpoint + this.urlPatchProfile;
   
   getList(){
     return this.httpClient.get(this.url, { observe: 'response' });
@@ -75,10 +77,9 @@ export class AccountsService extends HttpBaseService{
     const mergedUrl = `${this.urlAdmin}/${id}`;
     return this.httpClient.delete(mergedUrl);
   }
-  
-  getProfile(id: string){
-    const mergedUrl = `${this.url}/${id}`;
-    return this.httpClient.get(mergedUrl);
+
+  getProfile(){
+    return this.httpClient.get(this.urlProfile);
   }
 
   getCurrentAccount() {

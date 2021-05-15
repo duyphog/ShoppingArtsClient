@@ -43,6 +43,7 @@ import { from } from 'rxjs';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
+import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.module';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { FooterComponent } from './footer/footer.component';
     AccountsModule,
     AdminProductModule,
     AdminReportModule,
+    AdminSaleOrderModule,
     NgHttpLoaderModule.forRoot(),
     MatGoogleMapsAutocompleteModule,
     AgmCoreModule.forRoot(),

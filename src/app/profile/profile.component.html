@@ -1,16 +1,5 @@
 <div class="container">
-    <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
-        <mat-card-header>
-            <mat-card-title>Profile</mat-card-title>
-        </mat-card-header>
-    </div>
-    <!-- *ngIf="(currentUser$ | async) as user" -->
-    <mat-grid-list cols="5">
-        <mat-grid-tile>
-            <h1>{{currentUser$}}</h1>
-            Not Null
-        </mat-grid-tile>
-    </mat-grid-list>
+    
     <div class="row">
         <div class="col-4">
             <div class="tm-block-col tm-col-avatar">
@@ -27,10 +16,13 @@
                         Upload New Photo
                     </button>
                     <button class="btn btn-primary btn-block text-uppercase">
-                        View Invoice
+                        Change Password
                     </button>
                     <button class="btn btn-primary btn-block text-uppercase">
                         Edit Account
+                    </button>
+                    <button class="btn btn-primary btn-block text-uppercase">
+                        View Invoice
                     </button>
 
                 </div>
@@ -43,31 +35,29 @@
             <mat-card class="box">
                 <form class="product-form" [formGroup]="formDetail">
                     <mat-card-content>
-                        <table class="field-full-width">
+                        <table class="field-full-width color-item">
                             <tr>
                                 <td colspan="1">
+                                    
                                     <mat-form-field class="field-full-width">
-                                        <input matInput formControlName="userName" placeholder="User Name">
-                                        <mat-error *ngIf="formDetail.controls['userName'].invalid">User Name is required
-                                        </mat-error>
+                                        <mat-label>User Name</mat-label>
+                                        <input matInput value="{{account.id}}" disabled>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="1">
                                     <mat-form-field class="field-full-width">
-                                        <input matInput formControlName="email" placeholder="Email">
-                                        <mat-error *ngIf="formDetail.controls['email'].invalid">Email is required
-                                        </mat-error>
+                                        <mat-label>Email</mat-label>
+                                        <input matInput value="{{account.email}}" disabled>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="1">
                                     <mat-form-field class="field-full-width">
-                                        <input matInput formControlName="gender" placeholder="Gender">
-                                        <mat-error *ngIf="formDetail.controls['gender'].invalid">Gender is required
-                                        </mat-error>
+                                        <mat-label>Gender</mat-label>
+                                        <input matInput value="{{account.status?'Male':'Gemale'}}" disabled>
                                     </mat-form-field>
                                 </td>
                             </tr>
@@ -75,9 +65,8 @@
                             <tr>
                                 <td colspan="2">
                                     <mat-form-field class="field-full-width">
-                                        <input matInput formControlName="dateOfBirth" placeholder="Date Of Birth">
-                                        <mat-error *ngIf="formDetail.controls['dateOfBirth'].invalid">Date Of Birth is
-                                            required</mat-error>
+                                        <mat-label>Date Of Birth</mat-label>
+                                        <input matInput value="{{account.dateOfBirth}}" disabled>
                                     </mat-form-field>
                                 </td>
                             </tr>

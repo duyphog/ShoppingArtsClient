@@ -27,7 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
   declarations: [

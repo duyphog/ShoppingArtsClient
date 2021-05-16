@@ -11,6 +11,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatIconModule } from '@angular/material/icon';
 import { DetailsComponent } from './details/details.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {LayoutModule} from '@angular/cdk/layout';
 

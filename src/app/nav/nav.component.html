@@ -4,8 +4,10 @@
             <div><a routerLink="home" routerLinkActive="active" class="positronx">Demo</a></div>
     
             <span class="nav-tool-items">
-                <a mat-button routerLink="/home">Category</a>
+                <a mat-button routerLink="/account">Account</a>
+                <a mat-button routerLink="/category">Category</a>
                 <a mat-button routerLink="/product">Product</a>
+                <a mat-button routerLink="/contact-us">ContactUs</a>
             </span>
     
             <div *ngIf="!(currentUser$ | async) as user">
@@ -49,7 +51,7 @@
     
                     <button mat-menu-item routerLink="/profile">
                         <mat-icon>manage_accounts</mat-icon>
-                        <span>Account</span>
+                        <span>Profile</span>
                     </button>
     
                     <button mat-menu-item (click)="logout()">

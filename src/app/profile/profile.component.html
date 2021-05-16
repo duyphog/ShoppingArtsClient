@@ -1,0 +1,79 @@
+<div class="container">
+    
+    <div class="row">
+        <div class="col-4">
+            <div class="tm-block-col tm-col-avatar">
+                <div class="tm-bg-primary-dark tm-block tm-block-avatar">
+                    <h2 class="tm-block-title">Change Avatar</h2>
+                    <div class="tm-avatar-container">
+                        <img src="../../assets/photos/no-product-image.png" alt="Avatar"
+                            class="tm-avatar img-fluid mb-4" />
+                        <a href="#" class="tm-avatar-delete-link">
+                            <i class="far fa-trash-alt tm-product-delete-icon"></i>
+                        </a>
+                    </div>
+                    <button class="btn btn-primary btn-block text-uppercase">
+                        Upload New Photo
+                    </button>
+                    <button class="btn btn-primary btn-block text-uppercase">
+                        Change Password
+                    </button>
+                    <button class="btn btn-primary btn-block text-uppercase">
+                        Edit Account
+                    </button>
+                    <button class="btn btn-primary btn-block text-uppercase">
+                        View Invoice
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-8">
+            <mat-card class="box">
+                <form class="product-form" [formGroup]="formDetail">
+                    <mat-card-content>
+                        <table class="field-full-width color-item">
+                            <tr>
+                                <td colspan="1">
+                                    
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>User Name</mat-label>
+                                        <input matInput value="{{account.id}}" disabled>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput value="{{account.email}}" disabled>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>Gender</mat-label>
+                                        <input matInput value="{{account.status?'Male':'Gemale'}}" disabled>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>Date Of Birth</mat-label>
+                                        <input matInput value="{{account.dateOfBirth}}" disabled>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-card-content>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+</div>

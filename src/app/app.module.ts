@@ -18,7 +18,6 @@ import { CategoryService } from './_services/category.service';
 import { CartService } from './_services/cart.service';
 import { UtilService } from './_services/utils.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
-import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
 import { ProductService } from './_services/product.service';
@@ -28,12 +27,27 @@ import { OrderService } from './_services/order.service';
 import { AdminProductModule } from './admin/admin-product/admin-product.module';
 import { ProductModule } from './product/product.module';
 import { NgHttpLoaderModule } from 'ng-http-loader';
+import { ProfileComponent } from './profile/profile.component';
+
+import { CategoryModule } from './category/category.module';
+import { AccountsModule } from './accounts/accounts.module';
+import { AccountsService } from './_services/accounts.service';
+import { RoleService } from './_services/role.service';
+import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.component';
 
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { ContactUsService } from './_services/contact-us.service';
+import { AdminReportModule } from './admin/admin-report/admin-report.module';
+import { from } from 'rxjs';
+import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
+import { AgmCoreModule } from '@agm/core';
+import { FooterComponent } from './footer/footer.component';
+// import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.module';
 
 @NgModule({
   declarations: [
@@ -46,7 +60,10 @@ import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.c
     NotFoundErrorComponent,
     CartComponent,
     CheckOutComponent,
-    DialogPaymentComponent
+    DialogPaymentComponent,
+    ProfileComponent,
+    ContactUsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -65,16 +82,25 @@ import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.c
     }),
     TabsModule.forRoot(),
     ProductModule,
+    CategoryModule,
+    AccountsModule,
     AdminProductModule,
-    NgHttpLoaderModule.forRoot()
+    AdminReportModule,
+    // AdminSaleOrderModule,
+    NgHttpLoaderModule.forRoot(),
+    MatGoogleMapsAutocompleteModule,
+    AgmCoreModule.forRoot()
   ],
   providers: [
     HttpBaseService,
     AccountService,
     UtilService,
     ProductService,
+    AccountsService,
+    RoleService,
     PaginationService,
     CategoryService,
+    ContactUsService,
     CartService,
     OrderService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

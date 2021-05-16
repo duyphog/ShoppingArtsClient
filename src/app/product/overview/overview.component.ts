@@ -68,6 +68,7 @@ export class OverviewComponent implements OnInit {
     });
   }
 
+
   addCart(item: Product){
     const cartItem: CartItem = {
       productId: item.id,

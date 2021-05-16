@@ -1,0 +1,143 @@
+<div class="parent-container">
+    <div class="grid-container mat-elevation-z8">
+        <div class="grid-table-container">
+
+            <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
+                <mat-tab label="Filter">
+                    <td class="field-filter">
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Filter</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" placeholder="Any seach..." #input>
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </td>
+                    <td class="btn-add">
+                        <a routerLink="/category/details">
+                            <button mat-stroked-button> 
+                                <mat-icon>add_circle_outline</mat-icon> New
+                            </button>
+                        </a>
+                    </td>
+                </mat-tab>
+                <mat-tab label="Query">
+                    <mat-accordion>
+                        <mat-expansion-panel [expanded]="true">
+                            <mat-expansion-panel-header>
+                                Query on database
+                            </mat-expansion-panel-header>
+                            <form [formGroup]="queryForm">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <mat-form-field>
+                                                <mat-label>Product Id</mat-label>
+                                                <input matInput formControlName="productId">
+                                            </mat-form-field>
+                                        </td>
+                                        <td>
+                                            <mat-form-field>
+                                                <mat-label>Product Name</mat-label>
+                                                <input matInput formControlName="productName">
+                                            </mat-form-field>
+                                        </td>
+                                        <td class="input-row" fxLayout="row">
+                                            <mat-form-field fxFlex>
+                                                <mat-label>Stock prefix</mat-label>
+                                                <mat-select formControlName="prefixStock">
+                                                    <mat-option *ngFor="let item of stockTypeQuery" value={{item.id}}>
+                                                        {{item.value}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                            <mat-form-field fxFlex>
+                                                <input matInput type="number" formControlName="stockValue"
+                                                    placeholder="Stock value">
+                                            </mat-form-field>
+                                        </td>
+                                        <td>
+                                            <mat-form-field>
+                                                <mat-label>Status</mat-label>
+                                                <mat-select formControlName="statusType">
+                                                    <mat-option *ngFor="let item of statusTypeQuery" value={{item.id}}>
+                                                        {{item.value}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </td>
+                                        <td>
+                                            <button mat-stroked-button color="accent" (click)="submitQuery()"> 
+                                                <mat-icon>query_stats</mat-icon> Query
+                                            </button> 
+                                            <button mat-stroked-button color="primary" (click)="clearQuery()"> 
+                                                <mat-icon>refresh</mat-icon> Clear
+                                            </button>
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </form>
+
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                </mat-tab>
+            </mat-tab-group>
+
+
+            <table mat-table [dataSource]="dataSource" class="grid-table" matSort>
+                <!-- (matSortChange)="resetPaging()"> -->
+                <!-- <ng-container matColumnDef="photo">
+                    <th mat-header-cell *matHeaderCellDef> # </th>
+                    <td mat-cell *matCellDef="let row">
+                        <img *ngIf="row.photoUrl" mat-card-sm-image src={{row.photoUrl}} alt={{row.productName}}>
+                        <img *ngIf="!row.photoUrl" mat-card-sm-image src='../../../assets/photos/no-product-image.png' style="height:30px">
+                    </td>
+                </ng-container> -->
+
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ProductName </th>
+                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+                    <td mat-cell *matCellDef="let row"> {{row.description}} </td>
+                </ng-container>
+
+                
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+                    <td mat-cell *matCellDef="let row">
+                        <mat-icon color="primary">{{row.status ? "check_box" : "check_box_outline_blank"}}</mat-icon>
+                    </td>
+                </ng-container>
+                
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef> Actions </th>
+                    <td mat-cell *matCellDef="let row">
+                        <a mat-icon-button *ngIf="row.status" (click)="openDialog(row)" matTooltip="Set status false">
+                            <mat-icon color="warn">delete</mat-icon>
+                        </a>
+                        <a mat-icon-button [routerLink]="['/category/details', row.id]" matTooltip="Edit product">
+                            <mat-icon color="primary">edit</mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            </table>
+        </div>
+
+       
+    </div>
+</div>

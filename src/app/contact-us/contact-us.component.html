@@ -1,0 +1,64 @@
+
+  <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+      <div id="map-container-google-1" class="z-depth-1-half map-container" style="height: 300px">
+        <iframe src="https://maps.google.com/maps?q=manhatan&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"
+          style="border:0" allowfullscreen></iframe>
+      </div>
+      <hr>
+      <mat-card-header>
+        <mat-card-title>Contact Us</mat-card-title>        
+      </mat-card-header>
+      <hr>
+  
+      <form class="product-form" [formGroup]="formDetail" (ngSubmit)="save()">
+  
+        <mat-card-content>
+          <table class="field-full-width">
+            <tr >
+              <td colspan="2" >
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="name" placeholder=" Name">
+                  <mat-error *ngIf="formDetail.controls['name'].invalid">User Name is required</mat-error>
+                </mat-form-field>
+              </td>
+              <td colspan="2" >
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="phoneNumber" placeholder="Phone Number ">
+                  <mat-error *ngIf="formDetail.controls['phoneNumber'].invalid">User Name is required</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <mat-form-field class="field-full-width">
+                  <input matInput formControlName="email" placeholder="Email">
+                  <mat-error *ngIf="formDetail.controls['email'].invalid">Email is required</mat-error>
+                </mat-form-field>
+              </td>              
+            </tr>
+            <tr>
+              <td colspan="4">
+                <mat-form-field class="field-full-width">
+                  <textarea matInput formControlName="subject" placeholder="Subject"></textarea>
+                  <mat-error *ngIf="formDetail.controls['subject'].invalid">Subject is required</mat-error>
+                </mat-form-field>
+              </td>
+            </tr>
+            
+  
+          </table>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+          <button mat-stroked-button color="primary" type="submit">
+            <mat-icon>save</mat-icon> Send
+          </button>
+          <button mat-stroked-button color="warn" type="button" [routerLink]="['/product']">
+            <mat-icon>cancel</mat-icon> Cancel
+          </button>
+        </mat-card-actions>
+  
+      </form>
+    </mat-card>
+  </div> 

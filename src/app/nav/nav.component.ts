@@ -30,7 +30,7 @@ export class NavComponent implements OnInit {
     this.currentCart$ = this.carService.currentCart$;
     this.carService.currentCart$.subscribe(x => {
       this.countCart = x == null ? null : x.length;
-    });
+    }); 
   }
 
   logout() {

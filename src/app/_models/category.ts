@@ -4,5 +4,5 @@ export class Category {
     id : string;
     name : string;
     description: string;
-    links: Link[]
+    status : boolean
 }

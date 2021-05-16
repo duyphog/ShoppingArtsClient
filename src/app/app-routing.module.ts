@@ -7,6 +7,8 @@ import { ServerErrorComponent } from 'src/app/errors/server-error/server-error.c
 import { NotFoundErrorComponent } from 'src/app/errors/not-found-error/not-found-error.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'aboutus', component: RegisterComponent },
   { path: 'server-error', component: ServerErrorComponent},
   { path: 'not-found', component: NotFoundErrorComponent},
+  { path: 'profile', component: ProfileComponent},
+  { path: 'contact-us', component: ContactUsComponent}
 ];
 
 @NgModule({

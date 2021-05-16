@@ -12,23 +12,27 @@ import { Account } from '../_models/account';
 @Injectable({
   providedIn: 'root'
 })
-export class AccountService {
-  private endpoint = environment.endpoint;
+export class AccountService extends HttpBaseService {
+
   private patchLogin = this.endpoint + 'account/login';
   private patchRegister = this.endpoint + "account";
+
   private urlPatch = "account";
   private url = this.endpoint + this.urlPatch;
   
+  private urlPatchAdmin = "admin/AccountManager";
+  private urlPatchProfile = "account/profile";
+  
+  private urlAdmin = this.endpoint + this.urlPatchAdmin;
+  private urlProfile = this.endpoint + this.urlPatchProfile;
+
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
   AccountLogin: Observable<Account[]>;
-
-
-  constructor(private http: HttpClient) { }
   
   signIn(model: any) {
-    return this.http.post<User>(this.patchLogin, model).pipe(
+    return this.httpClient.post<User>(this.patchLogin, model).pipe(
       map((user: User) => {
         if (user) {
          this.setCurrentUser(user);
@@ -38,7 +42,7 @@ export class AccountService {
   }
 
   register(model: Register) {
-    return this.http.post<User>(this.patchRegister, JSON.stringify(model)).pipe(
+    return this.httpClient.post<User>(this.patchRegister, JSON.stringify(model)).pipe(
       map((user: User) => {
         if (user) {
          this.setCurrentUser(user);
@@ -56,12 +60,49 @@ export class AccountService {
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
     const mergedUrl = `${this.url}/${user.username}`;
-    this.AccountLogin = this.http.get<Account[]>(mergedUrl);
+    this.AccountLogin = this.httpClient.get<Account[]>(mergedUrl);
   }
 
   getDecodedToken(token) {
     return JSON.parse(atob(token.split('.')[1]));
   }
 
- 
+  getList(){
+    return this.httpClient.get(this.url, { observe: 'response' });
+  }
+  getAccount(): Observable<Account[]>{
+    return this.httpClient.get<Account[]>(this.url);
+  }
+  getSingle(id: string) {
+    const mergedUrl = `${this.url}/${id}`;
+    return this.httpClient.get(mergedUrl);
+  }
+
+  save(id: string, data: Account, method: string) {
+    switch (method) {
+      case "POST":
+        return this.httpClient.post<Account>(this.urlAdmin, data, { headers: this.headers });
+      case "PUT":
+        return this.httpClient.put<Account>(`${this.urlAdmin}/${id}`, data, { headers: this.headers });
+      default:
+        console.log(`${method} not found!!!`);
+        break;
+    }
+  }
+  delete(id: string) {
+    const mergedUrl = `${this.urlAdmin}/${id}`;
+    return this.httpClient.delete(mergedUrl);
+  }
+
+  getProfile(){
+    return this.httpClient.get(this.urlProfile);
+  }
+
+  getCurrentAccount() {
+    let accounts: Account[] = JSON.parse(localStorage.getItem('carts'));
+    if (accounts == null) {
+      accounts = new Array<Account>()
+    }
+    return accounts;
+  }
 }

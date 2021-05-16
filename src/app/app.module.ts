@@ -31,7 +31,6 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { CategoryModule } from './category/category.module';
 import { AccountsModule } from './accounts/accounts.module';
-import { AccountsService } from './_services/accounts.service';
 import { RoleService } from './_services/role.service';
 import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
@@ -96,7 +95,6 @@ import { FooterComponent } from './footer/footer.component';
     AccountService,
     UtilService,
     ProductService,
-    AccountsService,
     RoleService,
     PaginationService,
     CategoryService,

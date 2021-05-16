@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { from } from 'rxjs';
-import { AccountsService } from 'src/app/_services/accounts.service';
+import { AccountService } from 'src/app/_services/account.service';
 import { PaginationService } from 'src/app/_services/pagination.service';
 import { Account } from '../../_models/account'
 import { Observable } from 'rxjs';
@@ -17,7 +17,7 @@ export class OverviewComponent implements OnInit {
   dataSource: Account[];
   private accountQuery = new Account;
   constructor(
-    private accountsService: AccountsService,
+    private accountService: AccountService,
     private paginationService: PaginationService 
   ) { }
 
@@ -36,7 +36,7 @@ export class OverviewComponent implements OnInit {
   }
 
   getAllAccount() {
-    this.accountsService.getList().subscribe(
+    this.accountService.getList().subscribe(
         (result: any) => {
           this.dataSource = result.body;
 
@@ -50,7 +50,7 @@ export class OverviewComponent implements OnInit {
     });
   }
   delete(account: Account) {
-    this.accountsService.delete(account.id).subscribe(
+    this.accountService.delete(account.id).subscribe(
       () => {
         let index = this.dataSource.indexOf(account);
         account.status = false;

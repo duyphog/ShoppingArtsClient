@@ -1,0 +1,21 @@
+<div class="form-dialog">
+    <h1 mat-dialog-title color="warn">Payment confirm</h1>
+    <div mat-dialog-content>
+        <h4>OrderNumber: {{data.orderNumber}} <br/> Amount: {{data.amount}}</h4>
+        <p>Your OTP </p>
+        <mat-form-field>
+            <mat-label>Pin Code</mat-label>
+            <input matInput [(ngModel)]="data.pinCode">
+        </mat-form-field>
+
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-stroked-button color="primary" cdkFocusInitial [mat-dialog-close]="getData()"> 
+            <mat-icon>check_circle_outline</mat-icon> OK
+        </button>
+        <button mat-button mat-stroked-button color="warn" (click)="onNoClick()" cdkFocusInitial>
+            <mat-icon>cancel</mat-icon> No Thanks!
+        </button>
+    </div>
+
+</div>

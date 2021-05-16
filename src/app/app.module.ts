@@ -16,7 +16,7 @@ import { NavComponent } from './nav/nav.component';
 import { AccountService } from './_services/account.service';
 import { CategoryService } from './_services/category.service';
 import { CartService } from './_services/cart.service';
-import { GenderService } from './_services/gender.service';
+import { UtilService } from './_services/utils.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { RegisterComponent } from './account/register/register.component';
@@ -24,12 +24,15 @@ import { SigninComponent } from './account/signin/signin.component';
 import { ProductService } from './_services/product.service';
 import { PaginationService } from './_services/pagination.service';
 import { HttpBaseService } from './_services/http-base.service';
+import { OrderService } from './_services/order.service';
 import { AdminProductModule } from './admin/admin-product/admin-product.module';
 import { ProductModule } from './product/product.module';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error.component';
 import { CartComponent } from './cart/cart.component';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.component';
 
 
 @NgModule({
@@ -41,7 +44,9 @@ import { CartComponent } from './cart/cart.component';
     SigninComponent,
     ServerErrorComponent,
     NotFoundErrorComponent,
-    CartComponent
+    CartComponent,
+    CheckOutComponent,
+    DialogPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -66,11 +71,12 @@ import { CartComponent } from './cart/cart.component';
   providers: [
     HttpBaseService,
     AccountService,
-    GenderService,
+    UtilService,
     ProductService,
     PaginationService,
     CategoryService,
     CartService,
+    OrderService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: DEFAULT_TIMEOUT, useValue: 10000 }

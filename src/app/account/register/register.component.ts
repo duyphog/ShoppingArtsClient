@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/app/_services/account.service';
-import { GenderService } from 'src/app/_services/gender.service';
 import { Gender } from 'src/app/_models/gender';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, Validators } from '@angular/forms';
 import { PasswordValidation } from './password-validator';
+import { UtilService } from 'src/app/_services/utils.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   Genders : Gender[];
   public hidePw : boolean = true;
 
-  constructor(private accountService : AccountService, private genderService : GenderService, private formBuilder: FormBuilder,
+  constructor(private accountService : AccountService, private utilService : UtilService, private formBuilder: FormBuilder,
     private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
   );
 
   loadGenders() {
-    this.genderService.getGenders().subscribe(x => this.Genders = x);
+    this.utilService.getGenders().subscribe(x => this.Genders = x);
   }
 
   onSubmit(){

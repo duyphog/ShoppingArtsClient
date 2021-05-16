@@ -30,11 +30,15 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
-import { MatDatepickerModule,  } from '@angular/material/datepicker';
+import { MatDatepickerModule, } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatStepperModule } from '@angular/material/stepper';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 const materialModules = [
   CdkTreeModule,
@@ -71,7 +75,9 @@ const materialModules = [
   MatTooltipModule,
   MatNativeDateModule,
   MatMomentDateModule,
-  BrowserAnimationsModule
+  BrowserAnimationsModule,
+  MatStepperModule,
+  MatDialogModule
 ];
 
 export const MY_NATIVE_DATE_FORMATS = {
@@ -95,7 +101,8 @@ export const MY_NATIVE_DATE_FORMATS = {
     ...materialModules
   ],
   providers: [
-    {provide: MAT_DATE_FORMATS, useValue: MY_NATIVE_DATE_FORMATS},
+    { provide: MAT_DATE_FORMATS, useValue: MY_NATIVE_DATE_FORMATS },
+    { provide: STEPPER_GLOBAL_OPTIONS, useValue: { displayDefaultIndicatorType: false } }
   ]
 })
 

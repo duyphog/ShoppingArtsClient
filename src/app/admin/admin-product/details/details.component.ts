@@ -9,6 +9,7 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
 import { MatDialog } from '@angular/material/dialog';
 import { DialogConfirmDeletePhotoComponent } from '../dialog-confirm-delete-photo/dialog-confirm-delete-photo.component';
 import { Photo } from 'src/app/_models/photo';
+import { Location } from '@angular/common';
 
 export class InfoProduct{
   id: string;
@@ -56,7 +57,9 @@ export class DetailsComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService,
     private formBuilder: FormBuilder,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public location: Location
+
   ) { }
 
   ngOnInit(): void {
@@ -122,7 +125,7 @@ export class DetailsComponent implements OnInit {
     this.productService.save(productId, formData, method).subscribe(
       () => {
         this.toastr.success(`${this.infoEntity.id ? "Create" : "Update"} success`);
-        this.router.navigateByUrl("admin/product");
+        this.location.back();
       }
     );
   }

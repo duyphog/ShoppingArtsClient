@@ -53,8 +53,4 @@ export class CartComponent implements OnInit {
   clearAllItem(){
     this.cartService.clearCarts();
   }
-
-  checkout(){
-
-  }
 }

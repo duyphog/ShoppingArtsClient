@@ -30,3 +30,7 @@
 .details * {
  padding: 10px;
 }
+
+.btn-add-cart {
+	display: inline-flex;
+}

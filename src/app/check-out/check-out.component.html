@@ -1,0 +1,272 @@
+<div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <mat-horizontal-stepper [linear]="isLinear" #stepper>
+            <mat-step label="Cart" state="shop-cart">
+                <div class="cart-form">
+                    <mat-card-content>
+                        <table mat-table #table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="num">
+                                <th mat-header-cell *matHeaderCellDef> Num </th>
+                                <td mat-cell *matCellDef="let row; let i = index"> {{i + 1}} </td>
+                                <td mat-footer-cell *matFooterCellDef>#</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="photo">
+                                <th mat-header-cell *matHeaderCellDef> # </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <img *ngIf="row.photoUrl" mat-card-sm-image src={{row.photoUrl}}
+                                        alt={{row.productName}}>
+                                </td>
+                                <td mat-footer-cell *matFooterCellDef></td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="productName">
+                                <th mat-header-cell *matHeaderCellDef> Product Name </th>
+                                <td mat-cell *matCellDef="let row"> <a
+                                        [routerLink]="['/product/details', row.productId]" matTooltip="Go to product">
+                                        {{row.productName}}</a>
+                                </td>
+                                <td mat-footer-cell *matFooterCellDef> Total </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="price">
+                                <th mat-header-cell *matHeaderCellDef> Price </th>
+                                <td mat-cell *matCellDef="let row" class="ctn-number"> {{row.price | number}} </td>
+                                <td mat-footer-cell *matFooterCellDef></td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="quantity">
+                                <th mat-header-cell *matHeaderCellDef> Quantity </th>
+                                <td mat-cell *matCellDef="let row" class="ctn-number">
+                                    <div class="ctn-quantity">
+                                        {{row.quantity}}
+                                    </div>
+                                </td>
+
+                                <td mat-footer-cell *matFooterCellDef class="ctn-number">{{getTotalQuantity()}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="amount">
+                                <th mat-header-cell *matHeaderCellDef> Amount </th>
+                                <td mat-cell *matCellDef="let row" class="ctn-number"> {{row.quantity * row.price |
+                                    number}}
+                                </td>
+                                <td mat-footer-cell *matFooterCellDef class="ctn-number">{{getTotalAmount()}}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                            <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+                        </table>
+
+                    </mat-card-content>
+
+                    <mat-card-actions>
+                        <button mat-stroked-button color="primary" type="submit" [routerLink]="['/cart']"
+                            matTooltip="Modify cart">
+                            <mat-icon>shopping_cart</mat-icon> Goto Cart
+                        </button>
+                        <button mat-stroked-button color="accent" type="button" [routerLink]="['/product']"
+                            matTooltip="Go to shop">
+                            <mat-icon>next_week</mat-icon> Continute Shoping
+                        </button>
+
+                        <button class="next-step" mat-stroked-button matStepperNext>
+                            Next <mat-icon>fast_forward</mat-icon>
+                        </button>
+
+                    </mat-card-actions>
+                </div>
+            </mat-step>
+
+            <mat-step [stepControl]="shippingForm" label="Create Order - Shipping" state="shipping">
+                <form [formGroup]="shippingForm">
+                    <table class="tbl-shipping">
+                        <tr>
+                            <td colspan="2">
+                                <label id="radio-btn-delivery-label">Delivery Type</label>
+                                <mat-radio-group aria-labelledby="radio-btn-delivery-label" class="radio-btn-delivery"
+                                    formControlName="deliveryTypeId">
+                                    <mat-radio-button class="radio-btn-item" *ngFor="let item of deliveryTypes"
+                                        [value]="item.id">
+                                        <b>{{item.name}}</b> | <span class="otp-desc">{{item.description}}</span> |
+                                        <span class="otp-fee">{{"Fee: $" + item.fee}}</span>
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput formControlName="streetAddress" placeholder="Street Address"
+                                        required>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput formControlName="contry" placeholder="Contry" required>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput formControlName="firstName" placeholder="First Name">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput formControlName="lastName" placeholder="Last Name" required>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput formControlName="companyName" placeholder="Company Name">
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput formControlName="postCode" placeholder="PostCode">
+                                </mat-form-field>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput formControlName="city" placeholder="City" required>
+                                </mat-form-field>
+                            </td>
+                            <td>
+                                <mat-form-field>
+                                    <input matInput formControlName="phoneNumber" placeholder="PhoneNumber" required>
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <mat-form-field>
+                                    <input matInput formControlName="orderNote" placeholder="Note">
+                                </mat-form-field>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <div>
+                    <!-- <button class="next-step" mat-stroked-button matStepperPrevious>
+                        <mat-icon>fast_rewind</mat-icon> Previous
+                    </button> -->
+
+                    <button class="next-step" mat-stroked-button matStepperNext (click)="submitShipping()">
+                        Next <mat-icon>fast_forward</mat-icon>
+                    </button>
+                </div>
+            </mat-step>
+
+            <mat-step [stepControl]="paymentForm" label="Payment" state="payment">
+                <form [formGroup]="paymentForm" class="form-payment">
+
+                    <label id="radio-btn-payment-label">Payment Type</label>
+                    <mat-radio-group aria-labelledby="radio-btn-payment-label" class="radio-btn-payment" [(ngModel)]="paymentTypeSelected"
+                        formControlName="paymentTypeId">
+                        <mat-radio-button class="radio-btn-item" *ngFor="let item of paymentTypes" [value]="item">
+                            <b>{{item.paymentTypeName}}</b>
+                        </mat-radio-button>
+                    </mat-radio-group>
+
+                    <mat-form-field>
+                        <input matInput formControlName="orderNumber" placeholder="Order Number" required>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <input matInput formControlName="amount" placeholder="Amount" required>
+                    </mat-form-field>
+
+                    <ng-container *ngIf="paymentTypeSelected.isPaid">
+                        <mat-form-field>
+                            <input matInput formControlName="cartNumber" placeholder="Cart Number" required>
+                        </mat-form-field>
+    
+                        <mat-form-field>
+                            <input matInput formControlName="cartHolderName" placeholder="Cart Holder Name" required>
+                        </mat-form-field>
+                        
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="picker" formControlName="validUntil" placeholder="Valid Unit" required>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <button matSuffix [matDatepickerToggle]="picker"></button>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                        
+
+                        <!-- <mat-form-field>
+                            <input matInput formControlName="validUntil" placeholder="Valid Unit" required>
+                        </mat-form-field> -->
+    
+                        <mat-form-field>
+                            <input matInput formControlName="cvv" placeholder="CVV" required>
+                        </mat-form-field>
+                    </ng-container>
+                    
+                </form>
+
+                <div>
+                    <!-- <button class="next-step" mat-stroked-button matStepperPrevious matTooltip="Input Shipping">
+                        <mat-icon>fast_rewind</mat-icon> Previous
+                    </button> -->
+
+                    <button class="next-step" mat-stroked-button matStepperNext matTooltip="Input Shipping" 
+                        type="button" (click)="submitPayment()">
+                        Next <mat-icon>fast_forward</mat-icon>
+                    </button>
+                </div>
+            </mat-step>
+
+            <mat-step label="Done" state="done">
+                <mat-card class="form-done">
+                    <mat-card-header>
+                        <mat-card-title>Response</mat-card-title>
+                        <mat-card-subtitle>{{messageSuccess}}</mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content class="form-done-content">
+                        <p>OrderNumber: {{ordersSuccess.orderNumber}}</p>
+                        <p>Amount: ${{ordersSuccess.amount}}</p>
+                        <p>TransactionId: {{dataTransaction.transactionId}}</p>
+                        <p>IsSuccess: {{dataTransaction.isSuccess}}</p>
+                    
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-stroked-button color="primary" type="submit" [routerLink]="['/home']">
+                            My Orders
+                        </button>
+                        <button mat-stroked-button color="accent" type="button" [routerLink]="['/product']"
+                            matTooltip="Go to shop">
+                            <mat-icon>next_week</mat-icon> Continute Shoping
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </mat-step>
+
+            <!-- Icon overrides. -->
+            <ng-template matStepperIcon="shop-cart">
+                <mat-icon>shopping_cart</mat-icon>
+            </ng-template>
+
+            <ng-template matStepperIcon="shipping">
+                <mat-icon>local_shipping</mat-icon>
+            </ng-template>
+
+            <ng-template matStepperIcon="payment">
+                <mat-icon>payment</mat-icon>
+            </ng-template>
+
+            <ng-template matStepperIcon="ok">
+                <mat-icon>playlist_add_check</mat-icon>
+            </ng-template>
+
+        </mat-horizontal-stepper>
+    </mat-card>
+</div>

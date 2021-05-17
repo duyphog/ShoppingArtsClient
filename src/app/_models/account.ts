@@ -3,7 +3,6 @@ import { Role } from "./role";
 export class Account {
     id: string;
     userName: string;
-    password: string;
     email: string;
     dateOfBirth: string;
     gender: number;

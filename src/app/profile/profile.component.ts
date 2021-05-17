@@ -13,8 +13,9 @@ import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms'
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  model: any;
   account = new Account;
-
+  change = false;
   formDetail = this.formBuilder.group({
     'id': null,
     'userName': [null, Validators.required],
@@ -44,5 +45,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  btnChange(){
+    this.change = true;
+  }
 
 }

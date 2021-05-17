@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { from, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { AccountsService } from '../_services/accounts.service';
+import { AccountService } from '../_services/account.service';
 import { User } from '../_models/user';
 import { Account } from '../_models/account';
 
@@ -35,12 +35,12 @@ export class ProfileComponent implements OnInit {
   constructor( 
     private router: Router, 
     private toastr: ToastrService, 
-    public accountsService: AccountsService,
+    public accountService: AccountService,
     private formBuilder: FormBuilder,
     ) { }
 
   ngOnInit(): void {   
-    this.accountsService.getProfile().subscribe((account: Account) => {
+    this.accountService.getProfile().subscribe((account: Account) => {
       this.account = account;
     });
   }

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { from } from 'rxjs';
-import { AccountsService } from '../../_services/accounts.service';
+import { AccountService } from '../../_services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialog } from '@angular/material/dialog';
@@ -38,7 +38,7 @@ export class DetailsComponent implements OnInit {
   );
 
   constructor(
-    private accountsService: AccountsService,
+    private accountService: AccountService,
     private route: ActivatedRoute,
     private roleService: RoleService,
     private router: Router,
@@ -50,7 +50,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.accountsService
+      this.accountService
         .getSingle(id)
         .subscribe((account: Account) => {
             this.formDetail.setValue({
@@ -93,7 +93,7 @@ export class DetailsComponent implements OnInit {
 
     const method = data.id == undefined ? 'POST' : 'PUT';
     const accountId = this.formDetail.controls["id"] == undefined ? null : this.formDetail.controls["id"].value;
-    this.accountsService.save(accountId, data, method).subscribe(
+    this.accountService.save(accountId, data, method).subscribe(
       () => {
         this.toastr.success(`${this.formDetail.controls["id"] ? "Create" : "Update"} success`);
         this.router.navigateByUrl("account");

@@ -31,12 +31,17 @@ import { ProfileComponent } from './profile/profile.component';
 
 import { CategoryModule } from './category/category.module';
 import { AccountsModule } from './accounts/accounts.module';
-import { AccountsService } from './_services/accounts.service';
 import { RoleService } from './_services/role.service';
 import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { NotFoundErrorComponent } from './errors/not-found-error/not-found-error.component';
 import { CartComponent } from './cart/cart.component';
+<<<<<<< HEAD
+=======
+import { CheckOutComponent } from './check-out/check-out.component';
+import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.component';
+
+>>>>>>> 32f32eeef89be60a283175b1b919f3b52e1cac61
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ContactUsService } from './_services/contact-us.service';
 import { AdminReportModule } from './admin/admin-report/admin-report.module';
@@ -44,10 +49,14 @@ import { from } from 'rxjs';
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
+<<<<<<< HEAD
 import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.module';
 import { CheckOutComponent } from './check-out/check-out.component';
 import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.component';
 
+=======
+// import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.module';
+>>>>>>> 32f32eeef89be60a283175b1b919f3b52e1cac61
 
 @NgModule({
   declarations: [
@@ -59,11 +68,19 @@ import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.c
     ServerErrorComponent,
     NotFoundErrorComponent,
     CartComponent,
+<<<<<<< HEAD
     ProfileComponent,
     ContactUsComponent,
     FooterComponent,
     CheckOutComponent,
     DialogPaymentComponent
+=======
+    CheckOutComponent,
+    DialogPaymentComponent,
+    ProfileComponent,
+    ContactUsComponent,
+    FooterComponent
+>>>>>>> 32f32eeef89be60a283175b1b919f3b52e1cac61
   ],
   imports: [
     BrowserModule,
@@ -86,18 +103,16 @@ import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.c
     AccountsModule,
     AdminProductModule,
     AdminReportModule,
-    AdminSaleOrderModule,
+    // AdminSaleOrderModule,
     NgHttpLoaderModule.forRoot(),
     MatGoogleMapsAutocompleteModule,
-    AgmCoreModule.forRoot(),
-    
+    AgmCoreModule.forRoot()
   ],
   providers: [
     HttpBaseService,
     AccountService,
     UtilService,
     ProductService,
-    AccountsService,
     RoleService,
     PaginationService,
     CategoryService,

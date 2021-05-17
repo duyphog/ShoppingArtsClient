@@ -6,9 +6,15 @@ import { HomeComponent } from 'src/app/home/home.component';
 import { ServerErrorComponent } from 'src/app/errors/server-error/server-error.component';
 import { NotFoundErrorComponent } from 'src/app/errors/not-found-error/not-found-error.component';
 import { CartComponent } from './cart/cart.component';
+<<<<<<< HEAD
 import { ProfileComponent } from './profile/profile.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+=======
+import { CheckOutComponent } from './check-out/check-out.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+>>>>>>> 32f32eeef89be60a283175b1b919f3b52e1cac61
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },

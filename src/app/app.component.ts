@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { AccountService } from '../app/_services/account.service'
 import { User } from './_models/user';
 
@@ -22,6 +22,11 @@ export class AppComponent {
   ) {
   }
 
+  @HostListener('window:beforeunload', ['$event'])
+  unloadHandler(event: Event) {
+    // localStorage.removeItem('user');
+  }
+
   ngOnInit(): void {
     this.setcurrentUser();
     this.setShopingCart();
@@ -29,7 +34,9 @@ export class AppComponent {
 
   setcurrentUser() {
     const user: User = JSON.parse(localStorage.getItem('user'));
-    this.accountService.setCurrentUser(user);
+    if (user) {
+      this.accountService.setCurrentUser(user);
+    }
   }
 
   setShopingCart() {

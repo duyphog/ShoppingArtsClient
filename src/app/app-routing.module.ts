@@ -8,12 +8,15 @@ import { NotFoundErrorComponent } from 'src/app/errors/not-found-error/not-found
 import { CartComponent } from './cart/cart.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
+import { CheckOutComponent } from './check-out/check-out.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'signin', component: SigninComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'check-out', component: CheckOutComponent},
+  
   { path: 'register', component: RegisterComponent },
   { path: 'aboutus', component: RegisterComponent },
   { path: 'server-error', component: ServerErrorComponent},

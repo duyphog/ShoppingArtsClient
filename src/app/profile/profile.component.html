@@ -72,10 +72,7 @@
                             </tr>
                         </table>
                     </mat-card-content>
-                </form>
-            </mat-card>
-            <mat-card class="box">
-                <form class="product-form" [formGroup]="formDetail">
+
                     <mat-card-content>
                         <table class="field-full-width color-item">
                             <tr>
@@ -114,7 +111,39 @@
                             </tr>
                         </table>
                     </mat-card-content>
+
+                    <mat-card-content>
+                        <table class="field-full-width color-item">
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>Old Password</mat-label>
+                                        <input matInput value="{{account.id}}" disabled>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>New Password</mat-label>
+                                        
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>Re-Enter Password</mat-label>
+                                        <mat-label>New Password</mat-label>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+
+                           
+                        </table>
+                    </mat-card-content>
                 </form>
+
             </mat-card>
         </div>
     </div>

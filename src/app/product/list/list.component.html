@@ -13,7 +13,7 @@
                     </a>
                     
                     <mat-card-actions>
-                        <button mat-stroked-button color="accent" (click)="onAddCart.emit(item)"><mat-icon>add_shopping_cart</mat-icon> Add to cart</button>
+                        <button mat-stroked-button color="accent" disabled="{{!item.unlimited && item.stock <= 0}}" (click)="onAddCart.emit(item)"><mat-icon>add_shopping_cart</mat-icon> Add to cart</button>
                         <!-- <button mat-stroked-button color="primary" navigator="detail"><mat-icon>view_headline</mat-icon> Details</button> -->
                     </mat-card-actions>
                 </mat-card>

@@ -16,13 +16,14 @@ import { NavComponent } from './nav/nav.component';
 import { AccountService } from './_services/account.service';
 import { CategoryService } from './_services/category.service';
 import { CartService } from './_services/cart.service';
-import { GenderService } from './_services/gender.service';
+import { UtilService } from './_services/utils.service';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { RegisterComponent } from './account/register/register.component';
 import { SigninComponent } from './account/signin/signin.component';
 import { ProductService } from './_services/product.service';
 import { PaginationService } from './_services/pagination.service';
 import { HttpBaseService } from './_services/http-base.service';
+import { OrderService } from './_services/order.service';
 import { AdminProductModule } from './admin/admin-product/admin-product.module';
 import { ProductModule } from './product/product.module';
 import { NgHttpLoaderModule } from 'ng-http-loader';
@@ -44,6 +45,9 @@ import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/go
 import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
 import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.module';
+import { CheckOutComponent } from './check-out/check-out.component';
+import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.component';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +61,9 @@ import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.
     CartComponent,
     ProfileComponent,
     ContactUsComponent,
-    FooterComponent
+    FooterComponent,
+    CheckOutComponent,
+    DialogPaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +95,7 @@ import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.
   providers: [
     HttpBaseService,
     AccountService,
-    GenderService,
+    UtilService,
     ProductService,
     AccountsService,
     RoleService,
@@ -97,6 +103,7 @@ import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.
     CategoryService,
     ContactUsService,
     CartService,
+    OrderService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: DEFAULT_TIMEOUT, useValue: 10000 }

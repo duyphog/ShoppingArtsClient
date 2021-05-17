@@ -27,7 +27,7 @@ export class OverviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.paginationService.pageNumber = 1;
-    this.paginationService.pageSize = 30;
+    this.paginationService.pageSize = 20;
     this.getAllProduct();
   }
 

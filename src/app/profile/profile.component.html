@@ -74,6 +74,48 @@
                     </mat-card-content>
                 </form>
             </mat-card>
+            <mat-card class="box">
+                <form class="product-form" [formGroup]="formDetail">
+                    <mat-card-content>
+                        <table class="field-full-width color-item">
+                            <tr>
+                                <td colspan="1">
+                                    
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>User Name</mat-label>
+                                        <input matInput value="{{account.id}}" disabled>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>Email</mat-label>
+                                        <input matInput value="{{account.email}}" disabled>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="1">
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>Gender</mat-label>
+                                        <input matInput value="{{account.status?'Male':'Gemale'}}" disabled>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <mat-form-field class="field-full-width">
+                                        <mat-label>Date Of Birth</mat-label>
+                                        <input matInput value="{{account.dateOfBirth}}" disabled>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+                    </mat-card-content>
+                </form>
+            </mat-card>
         </div>
     </div>
 </div>

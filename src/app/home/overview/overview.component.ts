@@ -13,11 +13,9 @@ import { ProductQuery } from '../../_models/productQuery';
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css']
 })
-
 export class OverviewComponent implements OnInit {
   dataSource: Product[];
-  private productQuery = new ProductQuery;
-
+  private productQuery = new ProductQuery; 
   constructor(
     private productService: ProductService,
     private paginationService: PaginationService,
@@ -63,7 +61,7 @@ export class OverviewComponent implements OnInit {
     });
   }
 
-
+  
   addCart(item: Product){
     const cartItem: CartItem = {
       productId: item.id,

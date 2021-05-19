@@ -10,7 +10,6 @@ import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { HomeComponent } from './home//home.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './nav/nav.component';
 import { AccountService } from './_services/account.service';
@@ -42,18 +41,17 @@ import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.c
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ContactUsService } from './_services/contact-us.service';
 import { AdminReportModule } from './admin/admin-report/admin-report.module';
-import { from } from 'rxjs';
+
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
 import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.module';
-
+import { HomeModule } from './home/home.module'
 // import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavComponent,
     RegisterComponent,
     SigninComponent,
@@ -90,6 +88,7 @@ import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.
     ProductModule,
     CategoryModule,
     AccountsModule,
+    HomeModule,
     AdminProductModule,
     AdminReportModule,
     // AdminSaleOrderModule,

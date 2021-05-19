@@ -10,6 +10,12 @@ import { Account } from '../../_models/account';
 import { RoleService } from '../../_services/role.service';
 
 
+
+export class role{
+  role: Role[];
+}
+
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
@@ -32,7 +38,7 @@ export class DetailsComponent implements OnInit {
     'createBy': null,
     'modifyBy' : null,
     'modifyDate': null,
-    'roleId': null,
+    'roleIds': null,
   },
     
   );
@@ -65,10 +71,13 @@ export class DetailsComponent implements OnInit {
             createBy: account.createBy,
             modifyBy: account.modifyBy,
             modifyDate: account.modifyDate,
-            role: account.role,
-          });
+            roleIds: account.roles
+          }
+          
+          );
+          
         });
-        
+
         this.roleService.getList().subscribe(
           (result: any) => {
             this.role = result.body;
@@ -88,9 +97,7 @@ export class DetailsComponent implements OnInit {
     // }
 
     const data : Account = this.formDetail.value;
-    console.log(data);
-    return;
-
+    
     const method = data.id == undefined ? 'POST' : 'PUT';
     const accountId = this.formDetail.controls["id"] == undefined ? null : this.formDetail.controls["id"].value;
     this.accountService.save(accountId, data, method).subscribe(

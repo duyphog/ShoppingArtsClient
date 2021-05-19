@@ -12,34 +12,22 @@
       <mat-card-content>
         <table class="field-full-width">
           <tr >
-            <td colspan="4" *ngIf="formDetail.controls['id'].value != undefined">
-              <mat-form-field class="field-full-width">
-                <input matInput formControlName="userName" placeholder="User Name">
-                <mat-error *ngIf="formDetail.controls['userName'].invalid">User Name is required</mat-error>
-              </mat-form-field>
-            </td>              
-            <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined">
+            <td colspan="4">
               <mat-form-field class="field-full-width">
                 <input matInput formControlName="userName" placeholder="User Name">
                 <mat-error *ngIf="formDetail.controls['userName'].invalid">User Name is required</mat-error>
               </mat-form-field>
             </td>
-            <!-- <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined" > -->
-              <!-- <mat-form-field class="field-full-width"  >
+            <!-- <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined" >
+              <mat-form-field class="field-full-width"  >
                 <mat-label>Create Role</mat-label>
-                <mat-select formControlName="roleId" name="role">
+                <mat-select formControlName="roleIds" name="role">
                   <mat-option *ngFor="let item of role" [value]="item.id">{{item.name}}</mat-option>
                 </mat-select>
                 <mat-error >Category is required</mat-error>
-              </mat-form-field>  -->
-            <td colspan="2">
-              <mat-selection-list formControlName="roleId" name="role">
-                <mat-list-option *ngFor="let item of role" [value]="item.id">
-                  {{item.name}}
-                </mat-list-option>
-              </mat-selection-list>
-
-            </td>
+              </mat-form-field> 
+            </td> -->
+            
           </tr>
           <tr>
             <td colspan="2">
@@ -72,7 +60,16 @@
               </section>
             </td>
           </tr>
-          <tr *ngIf="formDetail.controls['id']">
+          <tr *ngIf="formDetail.controls['id'].value == undefined">
+            <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined"> 
+              <mat-selection-list formControlName="roleIds" name="role">
+                <mat-list-option *ngFor="let item of role" [value]="item.id">
+                  {{item.name}}
+                </mat-list-option>
+              </mat-selection-list>
+            </td>
+          </tr>
+          <tr *ngIf="formDetail.controls['id'].value != undefined">
             <td colspan="1">
               <mat-form-field class="field-full-width">
                 <input matInput formControlName="createBy" placeholder="CreateBy" style="display:block" >
@@ -97,11 +94,7 @@
                 <mat-error *ngIf="formDetail.controls['modifyDate'].invalid">User Name is required</mat-error>
               </mat-form-field>
             </td>
-            
-           
-            
           </tr>
-
         </table>
       </mat-card-content>
       <mat-divider></mat-divider>

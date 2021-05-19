@@ -9,6 +9,7 @@ import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpBaseService } from './http-base.service';
 import { Account } from '../_models/account';
+import { ChangePassword } from '../_models/change-password';
 @Injectable({
   providedIn: 'root'
 })
@@ -22,9 +23,11 @@ export class AccountService extends HttpBaseService {
   
   private urlPatchAdmin = "admin/AccountManager";
   private urlPatchProfile = "account/profile";
+  private urlPatchChangePassword = "account/change-password"
   
   private urlAdmin = this.endpoint + this.urlPatchAdmin;
   private urlProfile = this.endpoint + this.urlPatchProfile;
+  private urlChangePassword = this.endpoint + this.urlPatchChangePassword;
 
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
@@ -105,4 +108,10 @@ export class AccountService extends HttpBaseService {
     }
     return accounts;
   }
+
+  changePassword(data: ChangePassword){
+    return this.httpClient.put<Account>(`${this.urlChangePassword}`, data, { headers: this.headers });
+  }
+
+
 }

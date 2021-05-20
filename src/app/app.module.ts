@@ -28,6 +28,7 @@ import { AdminProductModule } from './admin/admin-product/admin-product.module';
 import { ProductModule } from './product/product.module';
 import { NgHttpLoaderModule } from 'ng-http-loader';
 import { ProfileComponent } from './profile/profile.component';
+import { MyOrderComponent } from './my-order/my-order.component';
 
 import { CategoryModule } from './category/category.module';
 import { AccountsModule } from './accounts/accounts.module';
@@ -62,7 +63,8 @@ import { FooterComponent } from './footer/footer.component';
     DialogPaymentComponent,
     ProfileComponent,
     ContactUsComponent,
-    FooterComponent
+    FooterComponent,
+    MyOrderComponent
   ],
   imports: [
     BrowserModule,

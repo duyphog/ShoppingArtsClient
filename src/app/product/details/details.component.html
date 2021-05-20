@@ -4,12 +4,12 @@
       <div class="wrapper row">
 
         <div class="preview col-md-6">
-          <img src={{urlImageShow}} alt={{urlImageShow}} >
-          
+          <img src={{urlImageShow}} alt={{urlImageShow}}>
+
           <mat-grid-list cols="5">
             <mat-grid-tile *ngFor="let item of product.photos">
               <a (click)="showImage(item.url)"><img class="grid-image" src={{item.url}}></a>
-              
+
             </mat-grid-tile>
           </mat-grid-list>
 
@@ -18,14 +18,17 @@
         <div class="details col-md-6">
           <h3 class="product-name">{{product.productName}}</h3>
           <h4 class="product-price">${{product.price}}</h4>
-            <p class="product-description">{{product.longDescription}}</p>
+          <p class="product-description">{{product.longDescription}}</p>
 
-            <p><mat-icon>group_work</mat-icon> In stock: <span>{{product.unlimited ? "unlimit" :product.stock}}</span></p> 
-            <div class="action">
-              <button class="btn-add-cart" mat-stroked-button color="accent" disabled="{{product.stock <= 0 && !product.unlimited}}" (click)="addCart()">
-                  <mat-icon>add_shopping_cart</mat-icon>Add to cart
-              </button> 
-            </div>
+          <p><b>In stock: <span>{{product.unlimited ? "unlimit" :product.stock}}</span></b></p>
+          <p *ngIf="product.warrantyPeriod">Warranty Period: {{product.warrantyPeriod}}</p>
+          <p *ngIf="product.warrantyPeriod">Warranty Period: {{product.warrantyPeriod}}</p>
+          <div class="action">
+            <button class="btn-add-cart" mat-stroked-button color="accent"
+              disabled="{{product.stock <= 0 && !product.unlimited}}" (click)="addCart()">
+              Add to cart
+            </button>
+          </div>
         </div>
 
       </div>

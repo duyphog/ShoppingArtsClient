@@ -34,10 +34,8 @@ this.markers.push({ latitude: lat, longitude: lng });
     'email': [null, Validators.required],
     'phoneNumber': [null, Validators.required],
     'subject': [null, Validators.required],
-    'confirm':[null, Validators.required],
     'description' : [null, Validators.required],
-    'status': true,
-    
+    'status': true
   })
 
   constructor(

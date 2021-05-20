@@ -90,7 +90,7 @@ export class CheckOutComponent implements OnInit {
         return
       }
       this.dataSource = new MatTableDataSource(x);
-    });
+    }).unsubscribe();
 
     this.appUtilService.getDeliveryType().subscribe(x => this.deliveryTypes = x);
     this.appUtilService.getPaymentType().subscribe(x => this.paymentTypes = x);
@@ -135,7 +135,7 @@ export class CheckOutComponent implements OnInit {
       this.toastr.success("Created Order", "Success");
       this.paymentForm.controls['orderNumber'].setValue(x.orderNumber);
       this.paymentForm.controls['amount'].setValue(x.amount);
-      // this.cartService.clearStorageCart();
+      this.cartService.clearCarts();
     });
   }
 

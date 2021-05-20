@@ -10,7 +10,6 @@ import { AngularMaterialModule } from './angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { HomeComponent } from './home//home.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NavComponent } from './nav/nav.component';
 import { AccountService } from './_services/account.service';
@@ -30,8 +29,8 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
 import { ProfileComponent } from './profile/profile.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 
-import { CategoryModule } from './category/category.module';
-import { AccountsModule } from './accounts/accounts.module';
+import { CategoryModule } from 'src/app/admin/category/category.module';
+import { AccountsModule } from 'src/app/admin/accounts/accounts.module';
 import { RoleService } from './_services/role.service';
 import { DEFAULT_TIMEOUT, JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
@@ -43,22 +42,28 @@ import { DialogPaymentComponent } from './dialog/dialog-payment/dialog-payment.c
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { ContactUsService } from './_services/contact-us.service';
 import { AdminReportModule } from './admin/admin-report/admin-report.module';
-import { from } from 'rxjs';
+
 import { MatGoogleMapsAutocompleteModule } from '@angular-material-extensions/google-maps-autocomplete';
 import { AgmCoreModule } from '@agm/core';
 import { FooterComponent } from './footer/footer.component';
+import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.module';
+import { HomeModule } from './home/home.module'
 // import { AdminSaleOrderModule } from './admin/admin-sale-order/admin-sale-order.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavComponent,
     RegisterComponent,
     SigninComponent,
     ServerErrorComponent,
     NotFoundErrorComponent,
     CartComponent,
+    ProfileComponent,
+    ContactUsComponent,
+    FooterComponent,
+    CheckOutComponent,
+    DialogPaymentComponent,
     CheckOutComponent,
     DialogPaymentComponent,
     ProfileComponent,
@@ -85,6 +90,7 @@ import { FooterComponent } from './footer/footer.component';
     ProductModule,
     CategoryModule,
     AccountsModule,
+    HomeModule,
     AdminProductModule,
     AdminReportModule,
     // AdminSaleOrderModule,

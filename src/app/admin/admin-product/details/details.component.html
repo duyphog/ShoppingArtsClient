@@ -149,7 +149,7 @@
           <button mat-stroked-button color="primary" type="submit">
             <mat-icon>save</mat-icon> Save
           </button>
-          <button mat-stroked-button color="warn" type="button" [routerLink]="['/admin/product']">
+          <button mat-stroked-button color="warn" type="button" (click)="location.back()">
             <mat-icon>cancel</mat-icon> Cancel
           </button>
         </mat-card-actions>

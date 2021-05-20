@@ -61,6 +61,27 @@
     
                 </mat-menu>
             </div>
+            
+            <div *ngIf="(currentUser$ | async) as user">
+                <button mat-icon-button [matMenuTriggerFor]="auth">
+                    <mat-icon>admin_panel_settings</mat-icon>
+                </button>
+                <mat-menu #auth="matMenu">
+                    <button mat-menu-item routerLink="/admin/category">
+                        <mat-icon>chevron_right</mat-icon>
+                        <span>Category</span>
+                    </button>
+                    <button mat-menu-item routerLink="/admin/product">
+                        <mat-icon>chevron_right</mat-icon>
+                        <span>Product</span>
+                    </button>
+                    <button mat-menu-item routerLink="/admin/account">
+                        <mat-icon>chevron_right</mat-icon>
+                        <span>Account</span>
+                    </button>
+                </mat-menu>
+            </div>
+
         </mat-toolbar-row>
     
     </mat-toolbar>

@@ -1,5 +1,5 @@
 <div class="container">
-    
+
     <div class="row">
         <div class="col-4">
             <div class="tm-block-col tm-col-avatar">
@@ -15,7 +15,7 @@
                     <button class="btn btn-primary btn-block text-uppercase">
                         Upload New Photo
                     </button>
-                    <button class="btn btn-primary btn-block text-uppercase">
+                    <button class="btn btn-primary btn-block text-uppercase" (click)="btnChange()">
                         Change Password
                     </button>
                     <button class="btn btn-primary btn-block text-uppercase">
@@ -32,46 +32,89 @@
 
         </div>
         <div class="col-8">
-            <mat-card class="box">
-                <form class="product-form" [formGroup]="formDetail">
+            <mat-card class="box" *ngIf="!change">
+                <mat-card-content>
+                    <table class="field-full-width color-item">
+                        <ng-container>
+                            <tr>
+                                <td><mat-label>User Name</mat-label></td>
+                                <td ><mat-label>{{account.userName}}</mat-label> </td>
+                            </tr>
+                            <tr><mat-divider></mat-divider></tr>
+                        </ng-container>
+                        <ng-container >
+                            <tr>
+                                <td> <mat-label>Email</mat-label></td>
+                                <td><mat-label>{{account.email}}</mat-label></td>
+                            </tr>
+                            <tr><mat-divider></mat-divider></tr>                        
+                        </ng-container>
+                        <ng-container >
+                            <tr>
+                                <td ><mat-label>Gender</mat-label></td>
+                                <td><mat-label>{{account.status?'Male':'Gemale'}}</mat-label></td>
+                            </tr>
+                            <tr><mat-divider></mat-divider></tr>                     
+                        </ng-container>
+                        <ng-container>
+                            <tr>
+                                <td><mat-label>Date Of Birth</mat-label></td>
+                                <td><mat-label>{{account.dateOfBirth}}</mat-label></td>
+                            </tr>
+                            <tr><mat-divider></mat-divider></tr>
+                        </ng-container>
+                        
+                    </table>
+                </mat-card-content>
+
+            </mat-card>
+            <mat-card class="box" *ngIf="change">
+                <form class="product-form" [formGroup]="formDetail" (ngSubmit)="save()">
                     <mat-card-content>
                         <table class="field-full-width color-item">
                             <tr>
-                                <td colspan="1">
-                                    
+                                <td colspan="4">
                                     <mat-form-field class="field-full-width">
-                                        <mat-label>User Name</mat-label>
-                                        <input matInput value="{{account.id}}" disabled>
+                                        <mat-label>Old Password</mat-label>
+                                        <input type="password" matInput formControlName="passwordOld"
+                                            name="oldPassword">
+                                        <mat-error *ngIf="formDetail.controls['passwordOld'].invalid">User Name is
+                                            required</mat-error>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="1">
+                                <td colspan="4">
                                     <mat-form-field class="field-full-width">
-                                        <mat-label>Email</mat-label>
-                                        <input matInput value="{{account.email}}" disabled>
+                                        <mat-label>New Password</mat-label>
+                                        <input type="password" matInput formControlName="passwordNew"
+                                            name="newPassword">
+                                        <mat-error *ngIf="formDetail.controls['passwordNew'].invalid">User Name is
+                                            required</mat-error>
                                     </mat-form-field>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="1">
+                                <td colspan="4">
                                     <mat-form-field class="field-full-width">
-                                        <mat-label>Gender</mat-label>
-                                        <input matInput value="{{account.status?'Male':'Gemale'}}" disabled>
+                                        <mat-label>Re-Enter Password</mat-label>
+                                        <input matInput>
                                     </mat-form-field>
                                 </td>
                             </tr>
 
-                            <tr>
-                                <td colspan="2">
-                                    <mat-form-field class="field-full-width">
-                                        <mat-label>Date Of Birth</mat-label>
-                                        <input matInput value="{{account.dateOfBirth}}" disabled>
-                                    </mat-form-field>
-                                </td>
-                            </tr>
                         </table>
                     </mat-card-content>
+                    <mat-divider></mat-divider>
+                    <mat-card-actions>
+                        <button mat-stroked-button color="primary" type="submit">
+                            <mat-icon>save</mat-icon> Save
+                        </button>
+                        <button mat-stroked-button color="warn" (click)="cancel()">
+                            <mat-icon>cancel</mat-icon> Cancel
+                        </button>
+                    </mat-card-actions>
+
                 </form>
             </mat-card>
         </div>

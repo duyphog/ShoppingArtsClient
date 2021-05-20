@@ -18,7 +18,7 @@ longitude = 20.728218;
 latitude = 52.128973;
 
 markers = [
-{ latitude: 52.228973, longitude: 20.728218 }
+{ latitude: 12.228973, longitude: 12.728218 }
 ];
 
 placeMarker(position: any) {

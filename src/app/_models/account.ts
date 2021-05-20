@@ -13,5 +13,5 @@ export class Account {
     version: number;
     createBy: string;
     modifyBy: string;
-    role : Role[];
+    roles : Role[];
 }

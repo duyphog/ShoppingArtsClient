@@ -4,7 +4,7 @@ export class Order {
     appUserId: string;
     orderStatusId: number;
     paymentTypeId: number;
-    seliveryTypeId: string;
+    deliveryTypeId: string;
     productId: string;
     quantity: number;
     price: number;
@@ -20,6 +20,41 @@ export class Order {
     orderNote: string;
     orderNumber: number;
     receivedDate: Date;
+    status: boolean;
+    createBy: string;
+    createDate: Date;
+    modifyBy: string;
+    modifyDate: Date;
+}
+
+export class OrderForMyOrder {
+    id: string;
+    orderDate: Date;
+    appUserId: string;
+    orderStatusId: number;
+    orderStatusName: string;
+    paymentTypeId: number;
+    paymentName: string;
+    deliveryTypeId: string;
+    deliveryName: string;
+    productId: string;
+    productName: string;
+    isTradeOrReturn: boolean;
+    quantity: number;
+    price: number;
+    amount: number;
+    firstName: string;
+    lastName: string;
+    companyName: string;
+    contry: string;
+    streetAddress: string;
+    postCode: string;
+    city: string;
+    phoneNumber: string;
+    orderNote: string;
+    orderNumber: number;
+    receivedDate: Date;
+    isPaid: boolean;
     status: boolean;
     createBy: string;
     createDate: Date;

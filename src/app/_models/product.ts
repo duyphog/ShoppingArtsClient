@@ -10,6 +10,7 @@ export class Product {
     price : number;
     origin : string;
     categoryId :string;
+    categoryName: string;
     unlimited : boolean;
     location : string;
     warrantyPeriod : number;

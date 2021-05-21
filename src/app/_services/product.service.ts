@@ -13,6 +13,7 @@ export class ProductService extends HttpBaseService {
   private urlPatchPhoto = "productphoto";
   private url = this.endpoint + this.urlPatch;
   private urlPhoto = this.endpoint + this.urlPatchPhoto;
+  private urlForCategory = this.urlPatch + "/category";
 
   getAll(productQuery: ProductQuery) {
     let params = new HttpParams();
@@ -37,6 +38,16 @@ export class ProductService extends HttpBaseService {
     }
 
     const mergedUrl = this.endpoint + this.urlPatch;
+    return this.httpClient.get(mergedUrl, { params, observe: 'response' });
+  }
+
+  getForCategory(categoryId: string, productQuery: ProductQuery){
+    let params = new HttpParams();
+    params = params.append("pageNumber", this.paginationService.pageNumber.toString())
+    params = params.append("pageSize", this.paginationService.pageSize.toString());
+    params = params.append("categoryId", categoryId);
+
+    const mergedUrl = this.endpoint + this.urlForCategory;
     return this.httpClient.get(mergedUrl, { params, observe: 'response' });
   }
 

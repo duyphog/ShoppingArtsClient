@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 import { CheckOutComponent } from './check-out/check-out.component';
+import { CategoryComponent } from 'src/app/category/category.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'check-out', component: CheckOutComponent},
   { path: 'my-order', component: MyOrderComponent},
-
+  { path: 'category/:id', component: CategoryComponent},
   { path: 'register', component: RegisterComponent },
   { path: 'aboutus', component: RegisterComponent },
   { path: 'server-error', component: ServerErrorComponent},

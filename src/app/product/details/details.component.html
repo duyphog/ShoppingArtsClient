@@ -22,7 +22,7 @@
 
           <p><b>In stock: <span>{{product.unlimited ? "unlimit" :product.stock}}</span></b></p>
           <p *ngIf="product.origin">Origin: {{product.origin}}</p>
-          <p *ngIf="product.warrantyPeriod">Warranty Period: {{product.warrantyPeriod}}</p>
+          <p *ngIf="product.warrantyPeriod">Warranty Period: {{product.warrantyPeriod}} (month)</p>
           <br/>
           <p>Category: <a routerLink="/category/{{product.categoryId}}">{{product.categoryName}}</a></p>
           <div class="action">

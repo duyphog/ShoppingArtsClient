@@ -31,15 +31,33 @@
           </tr>
           <tr>
             <td colspan="2">
-              <mat-form-field class="field-full-width">
+              <mat-form-field class="field-full-width" >
                 <input matInput formControlName="email" placeholder="Email">
                 <mat-error *ngIf="formDetail.controls['email'].invalid">Email is required</mat-error>
               </mat-form-field>
             </td>
-            <td colspan="2">
-              <mat-form-field class="field-full-width">
+            <td colspan="2" *ngIf="formDetail.controls['id'].value">
+              <!-- <mat-form-field class="field-full-width" >
                 <input matInput formControlName="gender" placeholder="Gender">
                 <mat-error *ngIf="formDetail.controls['gender'].invalid">Gender is required</mat-error>
+              </mat-form-field> -->
+              <mat-form-field  class="field-full-width">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" name="Gender">
+                  <mat-option *ngFor="let item of genderCreate"  [value]="item.id ">
+                    {{formDetail.controls['gender'].value==item.id?item.value:item.value }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td colspan="2" *ngIf="!formDetail.controls['id'].value">
+              <mat-form-field  class="field-full-width">
+                <mat-label>Gender</mat-label>
+                <mat-select formControlName="gender" name="Gender">
+                  <mat-option *ngFor="let item of genderCreate" [value]="item.id">
+                    {{item.value}}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </td>
           </tr>
@@ -51,23 +69,38 @@
                 <mat-error *ngIf="formDetail.controls['dateOfBirth'].invalid">Date Of Birth is required</mat-error>
               </mat-form-field>
             </td>
+              <td colspan="1"></td>
             <td colspan="1">
-           
-            </td>
-            <td colspan="1">
-              <section class="field-full-width" *ngIf="formDetail.controls['id']">
+              <section class="field-full-width" *ngIf="formDetail.controls['id'].value" aria-disabled="false">
                 <mat-checkbox formControlName="status" name="status">Status</mat-checkbox>
               </section>
             </td>
           </tr>
-          <tr *ngIf="formDetail.controls['id'].value == undefined">
-            <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined"> 
+          <tr>
+            <!-- <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined"> 
               <mat-selection-list formControlName="roleIds" name="role">
                 <mat-list-option *ngFor="let item of role" [value]="item.id">
                   {{item.name}}
                 </mat-list-option>
               </mat-selection-list>
-            </td>
+            </td> -->
+            <!-- <td colspan="1">
+              <mat-form-field class="field-full-width">
+                <input matInput formControlName="roleIds" placeholder="role">
+                <mat-error *ngIf="formDetail.controls['roleIds'].invalid">Date </mat-error>
+              </mat-form-field>
+            </td> -->
+          </tr>
+          <tr>
+           
+
+            <td colspan="2" *ngIf="formDetail.controls['id'].value == undefined">
+              <mat-selection-list formControlName="roleIds" name="role">
+                <mat-list-option *ngFor="let item of role" [value]="item.id">
+                  {{item.name}}
+                </mat-list-option>
+              </mat-selection-list>
+               </td>
           </tr>
           <tr *ngIf="formDetail.controls['id'].value != undefined">
             <td colspan="1">

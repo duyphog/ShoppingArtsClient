@@ -36,9 +36,12 @@ export class DetailsComponent implements OnInit {
     'modifyBy' : null,
     'modifyDate': null,
     'roleIds': null,
-  },
-    
-  );
+  },);
+
+  genderCreate = [
+    {"id" : 0, "value" : "Male"},
+    {"id" : 1, "value" : "Female"}
+  ]
 
   constructor(
     private accountService: AccountService,
@@ -68,7 +71,7 @@ export class DetailsComponent implements OnInit {
             createBy: account.createBy,
             modifyBy: account.modifyBy,
             modifyDate: account.modifyDate,
-            roleIds: account.roles
+            roleIds: null
           }
           
           );

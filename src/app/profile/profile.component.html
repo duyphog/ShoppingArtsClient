@@ -8,9 +8,6 @@
                     <div class="tm-avatar-container">
                         <img src="../../assets/photos/no-product-image.png" alt="Avatar"
                             class="tm-avatar img-fluid mb-4" />
-                        <a href="#" class="tm-avatar-delete-link">
-                            <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                        </a>
                     </div>
                     <button class="btn btn-primary btn-block text-uppercase">
                         Upload New Photo
@@ -18,7 +15,7 @@
                     <button class="btn btn-primary btn-block text-uppercase" (click)="btnChange()">
                         Change Password
                     </button>
-                    <button class="btn btn-primary btn-block text-uppercase">
+                    <button class="btn btn-primary btn-block text-uppercase" routerLink="'admin/account/detail'">
                         Edit Account
                     </button>
                     <button class="btn btn-primary btn-block text-uppercase">
@@ -95,12 +92,14 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4">
+                                <!-- <td colspan="4">
                                     <mat-form-field class="field-full-width">
                                         <mat-label>Re-Enter Password</mat-label>
-                                        <input matInput>
+                                        <input matInput  type="password" name="re-password">
+                                        <mat-error *ngIf="formDetail.controls['passwordNew'].value != re-password">User Name is
+                                            required</mat-error>
                                     </mat-form-field>
-                                </td>
+                                </td> -->
                             </tr>
 
                         </table>

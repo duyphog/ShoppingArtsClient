@@ -16,7 +16,7 @@ export class ProfileComponent implements OnInit {
   
   account = new Account;
   change = false;
-
+  editProfile = false;
 
   formDetail = this.formBuilder.group({
     'passwordOld': [null, Validators.required],

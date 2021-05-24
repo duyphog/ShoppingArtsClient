@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import { User } from '../_models/user';
 import { from, ReplaySubject } from 'rxjs';
@@ -45,7 +45,13 @@ export class AccountService extends HttpBaseService {
   }
 
   register(model: Register) {
-    return this.httpClient.post<User>(this.patchRegister, JSON.stringify(model)).pipe(
+
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    let options = { headers: headers };
+
+    return this.httpClient.post<User>(this.patchRegister, JSON.stringify(model), options).pipe(
       map((user: User) => {
         if (user) {
          this.setCurrentUser(user);

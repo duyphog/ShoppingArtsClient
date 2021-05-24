@@ -6,7 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from '../_models/user';
 import { CartService } from '../_services/cart.service';
 import { CartItem } from '../_models/cart-item';
-
+import { UtilService } from '../_services/utils.service';
+import { Category } from '../_models/category';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -17,12 +18,13 @@ export class NavComponent implements OnInit {
   currentUser$: Observable<User>;
   currentCart$: Observable<CartItem[]>;
   countCart = 0;
+  categories: Category[];
 
   constructor(
     public accountService: AccountService, 
     private carService: CartService,
     private router: Router, 
-    private toastr: ToastrService
+    private utilService: UtilService
     ) { }
   
   ngOnInit(): void {
@@ -31,10 +33,13 @@ export class NavComponent implements OnInit {
     this.carService.currentCart$.subscribe(x => {
       this.countCart = x == null ? null : x.length;
     }); 
+
+    this.utilService.getCategories().subscribe(
+      (x: Category[]) => this.categories = x
+    );
   }
 
   logout() {
     this.accountService.logout();
-    this.router.navigateByUrl('/home')
   }
 }

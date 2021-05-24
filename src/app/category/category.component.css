@@ -1,0 +1,35 @@
+
+.content > mat-card {
+    position: relative;
+}
+
+.mat-card-content {
+    text-align: center;
+    height: 60px;
+}
+
+.mat-card-actions > button {
+	width: 100%;
+    font-size: small;
+    min-width: fit-content;
+}
+
+.mat-elevation-z4 > a > img {
+    object-fit: cover;
+    height: 265.5px;
+}
+
+.span-price {
+    color: #833471;
+}
+
+.mat-elevation-z4 > a {
+    color: black;
+    text-decoration: none;
+}
+
+.flex-25 :hover {
+    /* color: #22a6b3; */
+    font-weight: bold;
+}
+

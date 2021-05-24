@@ -1,10 +1,21 @@
     <mat-toolbar color="primary" class="app-header fixed-top" >
         <mat-toolbar-row>
     
-            <div><a routerLink="home" routerLinkActive="active" class="positronx">Demo</a></div>
+            <div><a routerLink="home" routerLinkActive="active" class="positronx">HOME</a></div>
     
             <span class="nav-tool-items">
+<<<<<<< HEAD
                 <a mat-button routerLink="/category">Category</a>
+=======
+                <a mat-button [matMenuTriggerFor]="category">Shop</a>
+                <mat-menu #category="matMenu">
+                    <button mat-menu-item *ngFor="let item of categories" routerLink="/category/{{item.id}}">
+                        <mat-icon>chevron_right</mat-icon>
+                        <span>{{item.name}}</span>
+                    </button>
+                </mat-menu>
+
+>>>>>>> 39a7f36aa1931a975e64868755b2d8a562827715
                 <a mat-button routerLink="/product">Product</a>
                 <a mat-button routerLink="/contact-us">ContactUs</a>
             </span>
@@ -62,10 +73,10 @@
             </div>
             
             <div *ngIf="(currentUser$ | async) as user">
-                <button mat-icon-button [matMenuTriggerFor]="auth">
+                <button mat-icon-button [matMenuTriggerFor]="adminM">
                     <mat-icon>admin_panel_settings</mat-icon>
                 </button>
-                <mat-menu #auth="matMenu">
+                <mat-menu #adminM="matMenu">
                     <button mat-menu-item routerLink="/admin/category">
                         <mat-icon>chevron_right</mat-icon>
                         <span>Category</span>

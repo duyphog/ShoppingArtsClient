@@ -14,6 +14,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { DialogPaymentComponent } from '../dialog/dialog-payment/dialog-payment.component';
 import { MatDialog } from '@angular/material/dialog';
 import { OrderSucess } from 'src/app/_models/order-success';
+import { User } from '../_models/user';
+import { Observable } from 'rxjs';
 
 export class TransactionPayment {
   transactionId: string;
@@ -39,6 +41,7 @@ export class CheckOutComponent implements OnInit {
   paymentTypeSelected = new PaymentType();
   messageSuccess = "Waiting for payment..."
   dataTransaction = new TransactionPayment();
+  currentUser$: Observable<User>
 
   constructor(
     private accountService: AccountService,
@@ -77,13 +80,15 @@ export class CheckOutComponent implements OnInit {
       cvv: ['888999', Validators.required]
     });
 
-    this.accountService.currentUser$.subscribe(x => {
-      if (x == null) {
-        this.toastr.warning("Please login for checkout", "warning")
-        this.router.navigateByUrl('signin');
-      }
-    });
+    // this.accountService.currentUser$.subscribe((x : User)=> {   
+    //   if (x == null) {
+    //     this.toastr.warning("Please login for checkout", "warning")
+    //     this.router.navigateByUrl('signin');
+    //   }
+    // });
 
+    this.currentUser$ = this.accountService.currentUser$;
+    
     this.cartService.currentCart$.subscribe(x => {
       if (x == null || x.length == 0) {
         this.emptyCartProcess();

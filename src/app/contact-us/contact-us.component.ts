@@ -13,28 +13,12 @@ import { from } from 'rxjs';
 })
 export class ContactUsComponent implements OnInit {
 
- 
-longitude = 20.728218;
-latitude = 52.128973;
-
-markers = [
-{ latitude: 12.228973, longitude: 12.728218 }
-];
-
-placeMarker(position: any) {
-const lat = position.coords.lat;
-const lng = position.coords.lng;
-
-this.markers.push({ latitude: lat, longitude: lng });
-}
-
-
   formDetail = this.formBuilder.group({
     'name': [null, Validators.required],
     'email': [null, Validators.required],
     'phoneNumber': [null, Validators.required],
     'subject': [null, Validators.required],
-    'description' : [null, Validators.required],
+    'description': [null, Validators.required],
     'status': true
   })
 
@@ -43,9 +27,9 @@ this.markers.push({ latitude: lat, longitude: lng });
     private toastr: ToastrService,
     private router: Router,
     private formBuilder: FormBuilder,
-   
-  ) { 
-   
+
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -59,8 +43,8 @@ this.markers.push({ latitude: lat, longitude: lng });
     }
 
     let formData = new FormData();
-    const data : ContactUs = this.formDetail.value;
-    
+    const data: ContactUs = this.formDetail.value;
+
 
     const method = data.id == undefined ? 'POST' : 'PUT';
     const accountId = this.formDetail.controls["id"] == undefined ? null : this.formDetail.controls["id"].value;

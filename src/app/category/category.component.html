@@ -1,0 +1,27 @@
+<div class="container"> 
+    <div class="content">
+        <div fxLayout="row wrap" fxLayoutGap="16px grid">
+            <div class = "flex-25" fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of products">
+                <mat-card class="mat-elevation-z4" >
+                    <a routerLink="/product/details/{{item.id}}">
+                        <img mat-card-image src={{item.photoUrl}} alt={{item.photoUrl}}>   
+                        <mat-card-content>
+                            <span>{{item.productName}}</span>
+                            <br/>
+                            <span class="span-price">Price: ${{item.price}}</span>
+                        </mat-card-content>
+                    </a>
+                    
+                    <mat-card-actions>
+                        <button mat-stroked-button color="accent" disabled="{{!item.unlimited && item.stock <= 0}}" (click)="addCart(item)"><mat-icon>add_shopping_cart</mat-icon> Add to cart</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+    
+    <mat-paginator showFirstLastButtons [length]="paginationService.totalItems" [pageSize]="paginationService.pageSize"
+        [pageIndex]="paginationService.pageNumber-1" [pageSizeOptions]="paginationService.selectItemsPerPage"
+        (page)="onPageChage($event)">
+    </mat-paginator>
+</div>

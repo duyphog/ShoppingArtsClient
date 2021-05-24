@@ -29,6 +29,7 @@ import { NgHttpLoaderModule } from 'ng-http-loader';
 import { ProfileComponent } from './profile/profile.component';
 import { MyOrderComponent } from './my-order/my-order.component';
 
+import { CategoryComponent } from 'src/app/category/category.component';
 import { CategoryModule } from 'src/app/admin/category/category.module';
 import { AccountsModule } from 'src/app/admin/accounts/accounts.module';
 import { RoleService } from './_services/role.service';
@@ -69,7 +70,8 @@ import { HomeModule } from './home/home.module'
     ProfileComponent,
     ContactUsComponent,
     FooterComponent,
-    MyOrderComponent
+    MyOrderComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

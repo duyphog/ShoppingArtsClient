@@ -30,6 +30,7 @@ import { DetailsComponent } from './details/details.component';
 import { DialogConfirmDeleteComponent } from './dialog-confirm-delete/dialog-confirm-delete.component';
 import { MatListModule } from '@angular/material/list';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
 @NgModule({
   declarations: [
     OverviewComponent,
@@ -57,6 +58,7 @@ import { MatListModule } from '@angular/material/list';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    MatDatepickerModule,
     BrowserAnimationsModule,
     MatExpansionModule,
     MatTabsModule,
